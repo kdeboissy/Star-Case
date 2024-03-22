@@ -1,0 +1,92 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+    width: 12.5px;
+}
+
+ ::-webkit-scrollbar-track {
+    background: rgba(155, 155, 155, 0.181);
+}
+
+ ::-webkit-scrollbar-thumb {
+    background-clip: padding-box;
+    border-radius: 10rem;
+    background: rgba(155, 155, 155, 0.404);
+    transition: 0.3s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(155, 155, 155, 0.877);
+}
+
+.loading-dots {
+    position: relative;
+    width: 10px !important;
+    height: 10px !important;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5px;
+    background-color: #9c9a9a;
+    color: #9c9a9a;
+    animation: loading-dots 1s infinite linear alternate;
+    animation-delay: 0.5s;
+}
+
+.loading-dots::before, .loading-dots::after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    top: 0;
+}
+
+.loading-dots::before {
+    left: -15px;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: #9c9a9a;
+    color: #9c9a9a;
+    animation: loading-dots 1s infinite alternate;
+    animation-delay: 0s;
+}
+
+.loading-dots::after {
+    left: 15px;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: #9c9a9a;
+    color: #9c9a9a;
+    animation: loading-dots 1s infinite alternate;
+    animation-delay: 1s;
+}
+
+.b-vr {
+    flex-shrink: 0;
+    width: 1.5rem;
+    height: 100vh;
+}
+
+.b-divider {
+    background-color: rgba(0, 0, 0, .1);
+    border: solid rgba(0, 0, 0, .15);
+    border-width: 1px 0;
+    box-shadow: inset 0 0.5em 1.5em rgba(0, 0, 0, .1), inset 0 0.125em 0.5em rgba(0, 0, 0, .15);
+}
+
+@keyframes loading-dots {
+    0% {
+      background-color: #9c9a9a;
+    }
+
+    50%, 100% {
+      background-color: rgb(97 97 97 / 20%);
+    }
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <title>Star Case</title>
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta charset="UTF-8">
+
+    <link href="/styles/common.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body style="height: 100vh;">
+    <div class="d-flex flex-nowrap">
+        <!-- <div class="alert alert-danger" hidden="true" id="failBox"></div>
+        <div class="alert alert-success" hidden="true" id="successBox"></div>
+        <div class="alert alert-secondary" style="display: none;" id="loadingBox">
+            <div class="loading-dots"></div>
+        </div> -->
+
+        <div class="d-flex flex-column flex-shrink-0 p-3" style="width: 280px; height: 100vh;">
+            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+              <img src="/assets/starcase.png" alt="Logo" class="mr-2" width="63" height="43">
+              <span class="fs-4" style="margin-left: 10px;">Star Case</span>
+            </a>
+            <hr>
+            <ul class="nav nav-pills flex-column mb-auto">
+              <li class="nav-item">
+                <a id="casesBtn" href="javascript:loadCases();" class="nav-link link-body-emphasis active" aria-current="page">
+                    <i class="fas fa-suitcase" style="width:25px; height:16px"></i>
+                    Cases
+                </a>
+              </li>
+              <li>
+                <a id="inventoryBtn" href="javascript:loadInventory();" class="nav-link link-body-emphasis">
+                    <i class="fas fa-th-large" style="width:25px; height:16px"></i>
+                    Inventory
+                </a>
+              </li>
+              <li>
+                <a id="tradeBtn" href="javascript:loadTrade();" class="nav-link link-body-emphasis">
+                    <i class="fas fa-people-arrows" style="width:25px; height:16px"></i>
+                    Trade
+                </a>
+              </li>
+            </ul>
+            <hr>
+            <div class="dropdown">
+              <a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fas fa-user me-2"></i>
+                <strong>user</strong>
+              </a>
+              <ul class="dropdown-menu text-small shadow">
+                <li><a class="dropdown-item" href="/pages/admin">Admin</a></li>
+                <li><a class="dropdown-item" href="/pages/settings">Settings</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Sign out</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="b-divider b-vr"></div>
+          <div id="app" class="d-flex align-items-center justify-content-center flex-shrink-0 bg-body-primary" style="width: calc(100% - 280px - 1.5rem); height: 100vh;">
+
+          </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script src="/scripts/common.js"></script>
+    <script src="/scripts/cases.js"></script>
+    <script src="/scripts/inventory.js"></script>
+    <script src="/scripts/trade.js"></script>
+    <script type="text/javascript" defer>loadCases();</script>
+</body>
+</html>
