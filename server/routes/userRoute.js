@@ -11,16 +11,20 @@ async function userRoute(req, res, cache)
     if (!req.headers || !req.headers.authorization)
         return res.status(401).send({ message: 'Unauthorized' });
 
+    let find = false;
     Object.keys(database).forEach(async (user) => {
         console.log(database[user].username);
-        if (database[user].token === req.headers.authorization)
+        if (database[user].token === req.headers.authorization){
+            find = true;
             return await res.status(200).send({
                 username: database[user].username,
                 email: database[user].email
             });
+        }
     });
 
-    return res.status(401).send({ message: 'Unauthorized' });
+    if (!find)
+        return res.status(401).send({ message: 'Unauthorized' });
 }
 
 module.exports = {
