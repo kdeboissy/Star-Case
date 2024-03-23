@@ -18,9 +18,22 @@ async function getUserInventory(req, res)
             inventory: {}
         });
 
-    return res.status(200).send({
+    let inventory = database[userID].inventory;
+    let newInventory = [];
+
+    let colors = await getDatabase("items.json", "colors");
+    for (let i = 0; i < inventory.length; i++){
+        let item = await getDatabase("items.json", "items");
+        newInventory.push({
+            name: item[inventory[i]].name,
+            rarity: item[inventory[i]].rarity,
+            color: colors[item[inventory[i]].rarity],
+        });
+    }
+
+    return await res.status(200).send({
         inventorySize: database[userID].inventory.length,
-        inventory: database[userID].inventory
+        inventory: newInventory
     });
 }
 
