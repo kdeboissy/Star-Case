@@ -3,13 +3,22 @@
     border-radius: 10px;
     width: 50px;
     height: 50px;
-    background-color: rgba(255, 255, 255, .2);
-    transition: 2s;
+    background-color: rgb(164, 164, 164);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+    transition: .6s;
 }
 
 .box-btn:hover {
-    width: 65px;
-    height: 65px;
+    opacity: .5;
+}
+
+.item-btn {
+    border-radius: 10px;
+    width: 50px;
+    height: 50px;
+    background-color: rgb(164, 164, 164);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+    flex: none;
 }
 
 .the-case {
@@ -31,6 +40,52 @@
 
 .the-case-animation-0 {
     animation: moving-box .5s infinite;
+}
+
+.roulette {
+    height: 20%;
+    width: calc(100% - 280px - 1.5em);
+    left: calc(280px + 1.5rem);
+}
+
+.roulette-container {
+    background: #6565656d;
+    border-radius: 30px;
+    width: 80%;
+    height: 100%;
+    z-index: 50;
+    overflow-x: hidden;
+    flex-wrap: nowrap;
+}
+
+.roulette-container::before {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 25%;
+    height: 100%;
+    position: absolute;
+    content: '';
+    border-radius: 30px;
+    z-index: 100;
+
+    box-shadow: black 120px 0px 40px -28px inset;
+}
+
+.roulette-container::after {
+    top: 0;
+    left: calc(100% - 25%);
+    bottom: 0;
+    right: 0;
+    width: 25%;
+    height: 100%;
+    position: absolute;
+    content: '';
+    border-radius: 30px;
+    z-index: 100;
+
+    box-shadow: black -120px 0px 40px -28px inset;
 }
 
 @keyframes moving-box {

@@ -12,4 +12,9 @@
     width: 50px;
     height: 50px;
     box-shadow: var(--shadow-inventory);
+    transition: .1s;
+}
+
+.inventory-btn:hover {
+    opacity: .5;
 }
