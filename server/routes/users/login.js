@@ -18,10 +18,8 @@ async function loginRoute(req, res)
     email = req.body.email;
     password = req.body.password;
 
-    if (users === null || users === undefined || users[email] === undefined)
-        return await res.status(404).send({ message: 'User not found' });
-    if (users[email].password !== password)
-        return await res.status(401).send({ message: 'Invalid password' });
+    if (users === null || users === undefined || users[email] === undefined || users[email].password !== password)
+        return await res.status(403).send({ message: 'Invalid credentials' });
     return await res.status(200).send({
         message: 'Logged in',
         token: `${users[email].token}`
