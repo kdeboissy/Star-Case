@@ -28,6 +28,7 @@ async function getUserInventory(req, res)
             name: item[inventory[i]].name,
             rarity: item[inventory[i]].rarity,
             color: colors[item[inventory[i]].rarity],
+            path: item[inventory[i]].path,
         });
     }
 
