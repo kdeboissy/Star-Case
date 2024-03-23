@@ -1,6 +1,7 @@
 const { registerLogRequests } = require('./logs/registerLogRequests');
 const { mainRoute } = require('./routes/mainRoute');
 const { getUserInventory } = require('./routes/user/inventory');
+const { accept_trade } = require('./routes/users/accept_trade');
 const { loginRoute } = require('./routes/users/login');
 const { registerRoute } = require('./routes/users/register');
 const { trade } = require('./routes/users/trade');
@@ -16,6 +17,7 @@ async function registerRoutes(app)
         '/users/login': loginRoute,
         '/user/inventory': getUserInventory,
         '/users/trade/:userID': trade,
+        '/users/accept_trade/:userID': accept_trade,
     }
 
     for (const [route, routeFunction] of Object.entries(routes))
