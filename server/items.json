@@ -28,6 +28,16 @@
             "name": "Aymeric",
             "rarity": "Mythique",
             "price": 1000000
+        },
+        "3": {
+            "name": "Rondoudou shiny",
+            "rarity": "Legendaire",
+            "price": 10000
+        },
+        "4": {
+            "name": "Helicoptere AC-130",
+            "rarity": "Rare",
+            "price": 100
         }
     }
 }
