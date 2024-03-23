@@ -6,6 +6,7 @@ const { registerRoute } = require('./routes/users/register');
 const { trade } = require('./routes/users/trade');
 const { acceptTrade } = require('./routes/users/acceptTrade');
 
+const methodOverride = require('method-override');
 const express = require('express');
 require('dotenv').config();
 
@@ -25,12 +26,25 @@ async function registerRoutes(app, cache)
     await app.all('*', async (req, res) => res.status(404).send({error: 'Not Found'}));
 }
 
+function handleOptionRequests(req, res, next)
+{
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept', 'X-HTTP-Method-Override', 'Authorization');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    res.header('Access-Control-Allow-Credentials', 'true');
+    if (req.method === 'OPTIONS')
+        return res.status(200).send();
+    next();
+}
+
 async function main() {
     const cache = {}
     const app = express();
     const port = process.env.PORT;
 
     app.use(express.json());
+    app.use(methodOverride('X-HTTP-Method-Override'));
+    app.use(handleOptionRequests);
 
     await registerLogRequests(app);
     await registerRoutes(app, cache);
