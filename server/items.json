@@ -17,27 +17,32 @@
         "0": {
             "name": "Rondoudou",
             "rarity": "Commun",
-            "price": 10
+            "price": 10,
+            "path": "/assets/starcase.png"
         },
         "1": {
             "name": "Hugo",
             "rarity": "Legendaire",
-            "price": 10000
+            "price": 10000,
+            "path": "/assets/starcase.png"
         },
         "2": {
             "name": "Aymeric",
             "rarity": "Mythique",
-            "price": 1000000
+            "price": 1000000,
+            "path": "/assets/starcase.png"
         },
         "3": {
             "name": "Rondoudou shiny",
             "rarity": "Legendaire",
-            "price": 10000
+            "price": 10000,
+            "path": "/assets/starcase.png"
         },
         "4": {
             "name": "Helicoptere AC-130",
             "rarity": "Rare",
-            "price": 100
+            "price": 100,
+            "path": "/assets/starcase.png"
         }
     }
 }
