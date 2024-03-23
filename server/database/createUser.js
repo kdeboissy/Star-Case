@@ -7,6 +7,7 @@ async function getUserNextUserID()
 {
     const database = await new Database("users.json");
     const userID = await database.get("userCount");
+
     if (userID === null || userID === undefined)
     {
         await database.set("userCount", 1);
