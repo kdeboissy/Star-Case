@@ -8,12 +8,14 @@ const { acceptTrade } = require('./routes/users/acceptTrade');
 
 const methodOverride = require('method-override');
 const express = require('express');
+const { userRoute } = require('./routes/userRoute');
 require('dotenv').config();
 
 async function registerRoutes(app, cache)
 {
     const routes = {
         '/': function(req, res) { mainRoute(req , res, cache) },
+        '/user': function(req, res) { userRoute(req, res, cache) },
         '/users/register': function(req, res) { registerRoute(req, res, cache) },
         '/users/login': function(req, res) { loginRoute(req, res, cache) },
         '/user/inventory': function(req, res) { getUserInventory(req, res, cache) },
