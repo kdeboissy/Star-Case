@@ -1,0 +1,33 @@
+{
+    "colors": {
+        "Commun": "#000000",
+        "Rare": "#0000FF",
+        "Epique": "#FF00FF",
+        "Legendaire": "#FFA500",
+        "Mythique": "#FF0000"
+    },
+    "dropRate": {
+        "Commun": 60,
+        "Rare": 31.9,
+        "Epique": 7,
+        "Legendaire": 1,
+        "Mythique": 0.1
+    },
+    "items": {
+        "0": {
+            "name": "Rondoudou",
+            "rarity": "Commun",
+            "price": 10
+        },
+        "1": {
+            "name": "Hugo",
+            "rarity": "Legendaire",
+            "price": 10000
+        },
+        "2": {
+            "name": "Aymeric",
+            "rarity": "Mythique",
+            "price": 1000000
+        }
+    }
+}
