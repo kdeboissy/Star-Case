@@ -1,6 +1,6 @@
 const { registerLogRequests } = require('./logs/registerLogRequests');
 const { mainRoute } = require('./routes/mainRoute');
-const { newUserRoute } = require('./routes/users/new');
+const { newUserRoute } = require('./routes/users/register');
 const { trade } = require('./routes/users/trade');
 
 const express = require('express');
