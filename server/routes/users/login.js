@@ -1,4 +1,5 @@
 const { getDatabase } = require("../../database/getDatabase");
+const bcrypt = require('bcrypt');
 
 async function loginRoute(req, res)
 {
@@ -18,7 +19,7 @@ async function loginRoute(req, res)
     email = req.body.email;
     password = req.body.password;
 
-    if (users === null || users === undefined || users[email] === undefined || users[email].password !== password)
+    if (users === null || users === undefined || users[email] === undefined || users[email].password !== await bcrypt.hash(password, process.env.SALT))
         return await res.status(403).send({ message: 'Invalid credentials' });
     return await res.status(200).send({
         message: 'Logged in',

@@ -2,15 +2,15 @@ const axios = require('axios');
 
 const options = {
     method: 'POST',
-    url: 'http://localhost:8082/users/register',
+    url: 'http://localhost:8082/users/login',
     params: { 'api-version': '3.0' },
     headers: {
         'content-type': 'application/json',
     },
     data: {
-        username: 'testusae23r',
-        email: 'Jean@gmokaila.com',
-        password: 'testpassword'
+        // username: 'test',
+        email: 'Jean@test.com',
+        password: 'testpass'
     }
 };
 
