@@ -8,12 +8,15 @@ async function userRoute(req, res, cache)
         return res.status(405).send({ message: 'Please use GET method' });
     if (database === null || database === undefined)
         return res.status(500).send({ message: 'Internal server error' })
+    if (!req.headers || !req.headers.authorization)
+        return res.status(401).send({ message: 'Unauthorized' });
 
-    database.forEach(user => {
-        if (user.token === req.headers.authorization)
+    Object.keys(database).forEach((user) => {
+        console.log(database[user].username);
+        if (database[user].token === req.headers.authorization)
             return res.status(200).send({
-                username: user.username,
-                email: user.email
+                username: database[user].username,
+                email: database[user].email
             });
     });
 

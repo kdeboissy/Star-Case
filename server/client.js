@@ -1,11 +1,12 @@
 const axios = require('axios');
 
 const options = {
-    method: 'POST',
-    url: 'http://localhost:8082/users/login',
+    method: 'GET',
+    url: 'http://localhost:8082/user',
     params: { 'api-version': '3.0' },
     headers: {
         'content-type': 'application/json',
+        'authorization': 'NULL'
     },
     data: {
         // username: 'test',
