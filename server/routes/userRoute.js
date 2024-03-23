@@ -13,7 +13,6 @@ async function userRoute(req, res, cache)
 
     let find = false;
     Object.keys(database).forEach(async (user) => {
-        console.log(database[user].username);
         if (database[user].token === req.headers.authorization){
             find = true;
             return await res.status(200).send({
