@@ -19,8 +19,6 @@ async function trade(req, res, cache)
     trade_username = req.params.userID;
     itemID = req.body.itemID;
 
-    
-
     return res.status(200).send({ message: 'Not implemented' });
 }
 

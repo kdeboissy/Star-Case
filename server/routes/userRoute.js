@@ -16,6 +16,7 @@ async function userRoute(req, res, cache)
         if (database[user].token === req.headers.authorization){
             find = true;
             return await res.status(200).send({
+                userID: database[user].userID,
                 username: database[user].username,
                 email: user
             });

@@ -1,7 +1,26 @@
+const { checkToken } = require("../../database/checkToken");
+const { getDatabase } = require("../../database/getDatabase");
+
 async function getUserInventory(req, res)
 {
-    res.status(200).send({
-        inventory: {}
+    const database = await getDatabase("inventories.json", "users");
+
+    if (req.method !== 'GET')
+        return res.status(401).send({ message: 'Please use GET method' });
+
+    const userID = await checkToken(req.headers);
+    if (userID === -1)
+        return res.status(401).send({ message: 'Unauthorized' });
+
+    if (database === null || database === undefined || database[userID] === null || database[userID] === undefined)
+        return res.status(200).send({
+            inventorySize: 0,
+            inventory: {}
+        });
+
+    return res.status(200).send({
+        inventorySize: database[userID].inventory.length,
+        inventory: database[userID].inventory
     });
 }
 
