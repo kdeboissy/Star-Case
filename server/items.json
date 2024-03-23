@@ -43,6 +43,12 @@
             "rarity": "Rare",
             "price": 100,
             "path": "/assets/starcase.png"
+        },
+        "5": {
+            "name": "Pain au chocolat",
+            "rarity": "Commun",
+            "price": 10,
+            "path": "/assets/starcase.png"
         }
     }
 }
