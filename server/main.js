@@ -1,10 +1,10 @@
 const { registerLogRequests } = require('./logs/registerLogRequests');
 const { mainRoute } = require('./routes/mainRoute');
 const { getUserInventory } = require('./routes/user/inventory');
-const { accept_trade } = require('./routes/users/accept_trade');
 const { loginRoute } = require('./routes/users/login');
 const { registerRoute } = require('./routes/users/register');
 const { trade } = require('./routes/users/trade');
+const { acceptTrade } = require('./routes/users/acceptTrade');
 
 const express = require('express');
 require('dotenv').config();
@@ -12,12 +12,12 @@ require('dotenv').config();
 async function registerRoutes(app)
 {
     const routes = {
-        '/': mainRoute,
-        '/users/register': registerRoute,
-        '/users/login': loginRoute,
-        '/user/inventory': getUserInventory,
-        '/users/trade/:userID': trade,
-        '/users/accept_trade/:userID': accept_trade,
+        '/': function(req, res) { mainRoute(req , res, cache) },
+        '/users/register': function(req, res) { registerRoute(req, res, cache) },
+        '/users/login': function(req, res) { loginRoute(req, res, cache) },
+        '/user/inventory': function(req, res) { getUserInventory(req, res, cache) },
+        '/users/trade/:userID': function(req, res) { trade(req, res, cache) },
+        '/users/accept_trade/:userID': function(req, res) { acceptTrade(req, res, cache) }
     }
 
     for (const [route, routeFunction] of Object.entries(routes))

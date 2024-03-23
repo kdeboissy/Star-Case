@@ -1,4 +1,4 @@
-async function accept_trade(req, res)
+async function acceptTrade(req, res, cache)
 {
     let trade_username = null;
 
@@ -15,5 +15,5 @@ async function accept_trade(req, res)
 }
 
 module.exports = {
-    accept_trade
+    acceptTrade
 };
