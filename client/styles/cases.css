@@ -22,3 +22,28 @@
 .the-case:hover {
     width: 78%;
 }
+
+.the-case-animated {
+    margin-top: 20%;
+    width: 75%;
+    transition: 200ms;
+}
+
+.the-case-animation-0 {
+    animation: moving-box .5s infinite;
+}
+
+@keyframes moving-box {
+    0% {
+        transform:rotate(0deg);
+    }
+    25% {
+        transform: rotate(10deg);
+    }
+    50% {
+        transform: rotate(-10deg);
+    }
+    75% {
+        transform: scale(1) rotate(0deg);
+    }
+}

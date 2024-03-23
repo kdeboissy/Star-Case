@@ -3,6 +3,25 @@ const casesBtn = document.getElementById('casesBtn');
 const inventoryBtn = document.getElementById('inventoryBtn');
 const tradeBtn = document.getElementById('tradeBtn');
 
+function sleep(time) {
+    return new Promise((resolve) => setTimeout(resolve, time));
+}
+
+function openCase()
+{
+    let theCase = document.getElementById("theCase");
+
+    theCase.classList.add('the-case-animated');
+    theCase.classList.remove('the-case');
+    theCase.classList.add('the-case-animation-0');
+
+    sleep(2500).then(() => {
+        theCase.classList.remove('the-case-animated');
+        theCase.classList.add('the-case');
+        theCase.classList.remove('the-case-animation-0');
+    });
+}
+
 function loadCases()
 {
     casesBtn.classList.add("active");
@@ -29,7 +48,7 @@ function loadCases()
     </div>
 
     <div class="d-flex align-items-center justify-content-center" style="width: 100%; height: 100%;">
-        <img src="/assets/box0.png" class="the-case"/>
+        <img src="/assets/box0.png" class="the-case" id="theCase" onclick="openCase();"/>
     </div>
 </div>
 `;

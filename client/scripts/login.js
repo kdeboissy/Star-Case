@@ -10,8 +10,8 @@ const redirect = paramsURL && paramsURL.redirect ? paramsURL.redirect + '?' + ((
 function login()
 {
     requestAPIPublic(
-        "/api/login", "POST",
-        "email=${mailDom.value}&password=${passwordDom.value}",
+        "/users/login", "POST",
+        `{"email":"${mailDom.value.replaceAll('"', '\\"')}", "password":"${passwordDom.value.replaceAll('"', '\\"')}"}`,
         function (request) {
             localStorage.setItem("authToken", JSON.parse(request.responseText)["token"]);
             window.location.href = redirect ? redirect : '/pages/starcase';
