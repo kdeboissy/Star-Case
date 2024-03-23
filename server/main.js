@@ -1,5 +1,6 @@
 const { registerLogRequests } = require('./logs/registerLogRequests');
 const { mainRoute } = require('./routes/mainRoute');
+const { getUserInventory } = require('./routes/user/inventory');
 const { loginRoute } = require('./routes/users/login');
 const { registerRoute } = require('./routes/users/register');
 const { trade } = require('./routes/users/trade');
@@ -13,11 +14,13 @@ async function registerRoutes(app)
         '/': mainRoute,
         '/users/register': registerRoute,
         '/users/login': loginRoute,
-        '/users/trade/:userID': trade
+        '/user/inventory': getUserInventory,
+        '/users/trade/:userID': trade,
     }
 
     for (const [route, routeFunction] of Object.entries(routes))
         await app.all(route, routeFunction);
+    await app.all('*', async (req, res) => res.status(404).send({error: 'Not Found'}));
 }
 
 async function main() {
