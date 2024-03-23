@@ -18,7 +18,7 @@ async function userRoute(req, res, cache)
             find = true;
             return await res.status(200).send({
                 username: database[user].username,
-                email: database[user].email
+                email: user
             });
         }
     });
