@@ -26,7 +26,7 @@ async function createUser(username, password, email)
     const accountCreationAt = new Date().getTime();
     const accountPassword = await bcrypt.hash(password, process.env.SALT);
 
-    await users.set(email.replace('"', '\\"'), {
+    await users.set(email, {
         userID: userID,
         username: username,
         accountCreationAt: accountCreationAt,
