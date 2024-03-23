@@ -1,4 +1,5 @@
 const { Database, Table } = require("st.db");
+const { getDatabase } = require("./getDatabase");
 
 async function addItemInInventory(userID, item)
 {
@@ -48,7 +49,38 @@ async function removeItemInInventory(userID, itemID)
     return true;
 }
 
+async function getInventory(userID)
+{
+    const database = await getDatabase("inventories.json", "users");
+
+    if (database === null || database === undefined || database[userID] === null || database[userID] === undefined)
+        return {
+            inventorySize: 0,
+            inventory: {}
+        };
+
+    let inventory = database[userID].inventory;
+    let newInventory = [];
+
+    let colors = await getDatabase("items.json", "colors");
+    for (let i = 0; i < inventory.length; i++){
+        let item = await getDatabase("items.json", "items");
+        newInventory.push({
+            name: item[inventory[i]].name,
+            rarity: item[inventory[i]].rarity,
+            color: colors[item[inventory[i]].rarity],
+            path: item[inventory[i]].path,
+        });
+    }
+
+    return {
+        inventorySize: database[userID].inventory.length,
+        inventory: newInventory
+    };
+}
+
 module.exports = {
     addItemInInventory,
-    removeItemInInventory
+    removeItemInInventory,
+    getInventory
 };

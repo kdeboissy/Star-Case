@@ -1,5 +1,6 @@
 const { checkToken } = require("../../database/checkToken");
 const { getDatabase } = require("../../database/getDatabase");
+const { getInventory } = require("../../database/inventory");
 
 async function getUserInventory(req, res)
 {
@@ -18,24 +19,9 @@ async function getUserInventory(req, res)
             inventory: {}
         });
 
-    let inventory = database[userID].inventory;
-    let newInventory = [];
-
-    let colors = await getDatabase("items.json", "colors");
-    for (let i = 0; i < inventory.length; i++){
-        let item = await getDatabase("items.json", "items");
-        newInventory.push({
-            name: item[inventory[i]].name,
-            rarity: item[inventory[i]].rarity,
-            color: colors[item[inventory[i]].rarity],
-            path: item[inventory[i]].path,
-        });
-    }
-
-    return await res.status(200).send({
-        inventorySize: database[userID].inventory.length,
-        inventory: newInventory
-    });
+    return res.status(200).send(
+        await getInventory(userID)
+    );
 }
 
 module.exports = {

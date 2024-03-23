@@ -9,6 +9,7 @@ const { acceptTrade } = require('./routes/users/acceptTrade');
 const methodOverride = require('method-override');
 const express = require('express');
 const { userRoute } = require('./routes/userRoute');
+const { tradeRoute } = require('./routes/tradeRoute');
 require('dotenv').config();
 
 async function registerRoutes(app, cache)
@@ -19,6 +20,7 @@ async function registerRoutes(app, cache)
         '/users/register': function(req, res) { registerRoute(req, res, cache) },
         '/users/login': function(req, res) { loginRoute(req, res, cache) },
         '/user/inventory': function(req, res) { getUserInventory(req, res, cache) },
+        '/trade': function(req, res) { tradeRoute(req, res, cache) },
         '/users/trade/:userID': function(req, res) { trade(req, res, cache) },
         '/users/accept_trade/:userID': function(req, res) { acceptTrade(req, res, cache) }
     }
@@ -39,6 +41,18 @@ function handleOptionRequests(req, res, next)
     next();
 }
 
+function showCache(cache)
+{
+    setInterval(() => {
+        console.log(cache);
+    }, 10000);
+}
+
+async function initCache(cache)
+{
+    cache.activeTrades = {};
+}
+
 async function main() {
     const cache = {}
     const app = express();
@@ -48,6 +62,8 @@ async function main() {
     app.use(methodOverride('X-HTTP-Method-Override'));
     app.use(handleOptionRequests);
 
+    await initCache(cache);
+    // showCache(cache);
     await registerLogRequests(app);
     await registerRoutes(app, cache);
 

@@ -1,3 +1,4 @@
+const { checkToken } = require("../database/checkToken");
 const { getDatabase } = require("../database/getDatabase");
 
 async function userRoute(req, res, cache)
@@ -8,7 +9,8 @@ async function userRoute(req, res, cache)
         return res.status(405).send({ message: 'Please use GET method' });
     if (database === null || database === undefined)
         return res.status(500).send({ message: 'Internal server error' })
-    if (!req.headers || !req.headers.authorization)
+    const userID = await checkToken(req.headers);
+    if (userID === -1)
         return res.status(401).send({ message: 'Unauthorized' });
 
     let find = false;

@@ -1,14 +1,17 @@
 const axios = require('axios');
 
 const options = {
-    method: 'GET',
-    url: 'http://localhost:8082/user/inventory',
+    method: 'POST',
+    url: 'http://localhost:8082/users/trade/0',
     params: { 'api-version': '3.0' },
     headers: {
         'content-type': 'application/json',
         'authorization': 'eyJhbGciOiJIUzI1NiJ9.SmVhbkB0ZXN0LmNvbToxNzExMTk2NTk5MTQzOiQyYiQxMCRGZGY4VnV5ZjJXZlZrY29kM0hkQmlPRHJOdmVpS0RCMjM4bzJpZlR2OGZWRlVQeEFXNW43Rw.ffgp7UKfmwBdX4Uao-jlhMCCRzzQeHKlAaQ7PziM9KM'
     },
-    data: {}
+    data: {
+        itemWanted: [],
+        itemOffered: []
+    }
 };
 
 axios
