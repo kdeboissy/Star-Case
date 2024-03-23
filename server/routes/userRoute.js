@@ -11,10 +11,10 @@ async function userRoute(req, res, cache)
     if (!req.headers || !req.headers.authorization)
         return res.status(401).send({ message: 'Unauthorized' });
 
-    Object.keys(database).forEach((user) => {
+    Object.keys(database).forEach(async (user) => {
         console.log(database[user].username);
         if (database[user].token === req.headers.authorization)
-            return res.status(200).send({
+            return await res.status(200).send({
                 username: database[user].username,
                 email: database[user].email
             });
