@@ -1,3 +1,15 @@
+function showSendTrade(id, username)
+{
+    document.getElementById('sendTradeLabel').innerText = `Trade - ${username}`;
+    $("#sendTrade").modal('show');
+}
+
+function showTrade(id, username)
+{
+    document.getElementById('acceptTradeLabel').innerText = `Trade - ${username}`;
+    $("#acceptTrade").modal('show');
+}
+
 function loadTrade()
 {
     casesBtn.classList.remove("active");
@@ -14,38 +26,53 @@ function loadTrade()
 </div>
 <div class="d-flex flex-nowrap" style="width: 100%; height: 100%;">
   <div class="d-flex flex-column flex-shrink-0 p-3" style="width: 100%; height: 100vh;">
-    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+    <a class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
       <span class="fs-4" style="margin-left: 10px;">Requests</span>
     </a>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto" id="tradeRequests">
     </ul>
 
-    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+    <a class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
       <span class="fs-4" style="margin-left: 10px;">User list</span>
     </a>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto" id="tradeUsers">
-      <li class="nav-item">
-        <a id="casesBtn" href="javascript:acceptTrade();" class="nav-link link-body-emphasis" aria-current="page">
-            <i class="fas fa-user me-2"></i>
-            test
-        </a>
-      </li>
-      <li>
-        <a id="inventoryBtn" href="javascript:acceptTrade();" class="nav-link link-body-emphasis">
-            <i class="fas fa-user me-2"></i>
-            test2
-        </a>
-      </li>
-      <li>
-        <a id="tradeBtn" href="javascript:acceptTrade();" class="nav-link link-body-emphasis">
-            <i class="fas fa-user me-2"></i>
-            test3
-        </a>
-      </li>
     </ul>
     <hr>
+  </div>
+</div>
+<div class="modal fade" id="sendTrade" tabindex="-1" aria-labelledby="sendTradeLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="sendTradeLabel">Trade - unknown</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary">Send</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="acceptTrade" tabindex="-1" aria-labelledby="acceptTradeLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="acceptTradeLabel">Trade - unknown</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Refuse</button>
+        <button type="button" class="btn btn-primary">Accept</button>
+      </div>
+    </div>
   </div>
 </div>
 `;
@@ -68,7 +95,7 @@ function loadTrade()
                 var i = document.createElement('i');
 
                 a.classList.add("nav-link", "link-body-emphasis");
-                a.href = `javascript:acceptTrade(${element});`;
+                a.href = `javascript:showTrade(${element}, "${json[element]["username"].replaceAll('"', '\\"')}");`;
                 i.classList.add("fas", "fa-user", "me-2");
 
                 a.appendChild(i);
@@ -90,7 +117,7 @@ function loadTrade()
                     var i = document.createElement('i');
 
                     a.classList.add("nav-link", "link-body-emphasis");
-                    a.href = `javascript:sendTrade(${element});`;
+                    a.href = `javascript:showSendTrade(${element}, "${json[element].replaceAll('"', '\\"')}");`;
                     i.classList.add("fas", "fa-user", "me-2");
 
                     a.appendChild(i);

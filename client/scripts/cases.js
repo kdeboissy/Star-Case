@@ -3,6 +3,8 @@ const casesBtn = document.getElementById('casesBtn');
 const inventoryBtn = document.getElementById('inventoryBtn');
 const tradeBtn = document.getElementById('tradeBtn');
 
+let box = 0;
+
 function sleep(time) {
     return new Promise((resolve) => setTimeout(resolve, time));
 }
@@ -41,11 +43,20 @@ function openCase()
     });
 }
 
+function switchCase(i)
+{
+    box = i;
+
+    document.getElementById('theCase').src = `/assets/box${box}.png`;
+}
+
 function loadCases()
 {
     casesBtn.classList.add("active");
     inventoryBtn.classList.remove("active");
     tradeBtn.classList.remove("active");
+
+    box = 0;
 
     app.innerHTML = `
 
@@ -169,11 +180,15 @@ function loadCases()
     </div>
 
     <div class="d-flex align-items-center justify-content-center position-absolute" style="width: calc(100% - 280px - 1.5em); left: calc(280px + 1.5rem); height: 100px">
-        <div class="d-flex position-relative align-items-center justify-content-center m-2 box-btn">
+        <div class="d-flex position-relative align-items-center justify-content-center m-2 box-btn" onclick="switchCase(0);">
             <img src="/assets/box0.png" style="width: 100%;"/>
         </div>
-        <div class="d-flex position-relative m-2 box-btn"></div>
-        <div class="d-flex position-relative m-2 box-btn"></div>
+        <div class="d-flex position-relative align-items-center justify-content-center m-2 box-btn" onclick="switchCase(1);">
+            <img src="/assets/box1.png" style="width: 100%;"/>
+        </div>
+        <div class="d-flex position-relative align-items-center justify-content-center m-2 box-btn" onclick="switchCase(2);">
+            <img src="/assets/box2.png" style="width: 100%;"/>
+        </div>
         <div class="d-flex position-relative m-2 box-btn"></div>
     </div>
 
