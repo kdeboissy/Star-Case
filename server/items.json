@@ -18,7 +18,7 @@
             "name": "Rondoudou",
             "rarity": "Commun",
             "price": 10,
-            "path": "/assets/starcase.png"
+            "path": "/assets/rondoudou.png"
         },
         "1": {
             "name": "Hugo",
@@ -36,19 +36,13 @@
             "name": "Rondoudou shiny",
             "rarity": "Legendaire",
             "price": 10000,
-            "path": "/assets/starcase.png"
+            "path": "/assets/rondoudou_shiny.png"
         },
         "4": {
-            "name": "Helicoptere AC-130",
-            "rarity": "Rare",
-            "price": 100,
-            "path": "/assets/starcase.png"
-        },
-        "5": {
             "name": "Pain au chocolat",
             "rarity": "Commun",
             "price": 10,
-            "path": "/assets/starcase.png"
+            "path": "/assets/pain_au_chocolat.png"
         }
     }
 }
