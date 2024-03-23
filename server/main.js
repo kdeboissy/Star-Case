@@ -1,14 +1,17 @@
-const express = require('express');
 const { registerLogRequests } = require('./logs/registerLogRequests');
 const { mainRoute } = require('./routes/mainRoute');
 const { newUserRoute } = require('./routes/users/new');
+const { trade } = require('./routes/users/trade');
+
+const express = require('express');
 require('dotenv').config();
 
 async function registerRoutes(app)
 {
     const routes = {
         '/': mainRoute,
-        '/users/new': newUserRoute,
+        '/users/register': newUserRoute,
+        '/users/trade/:userID': trade
     }
 
     for (const [route, routeFunction] of Object.entries(routes))
