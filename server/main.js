@@ -10,6 +10,7 @@ const methodOverride = require('method-override');
 const express = require('express');
 const { userRoute } = require('./routes/userRoute');
 const { tradeRoute } = require('./routes/tradeRoute');
+const { usersRoute } = require('./routes/usersRoute');
 require('dotenv').config();
 
 async function registerRoutes(app, cache)
@@ -18,6 +19,7 @@ async function registerRoutes(app, cache)
         '/': function(req, res) { mainRoute(req , res, cache) },
         '/user': function(req, res) { userRoute(req, res, cache) },
         '/item/:id': function(req, res) { itemRoute(req, res, cache) },
+        '/users': function(req, res) { usersRoute(req, res, cache) },
         '/users/register': function(req, res) { registerRoute(req, res, cache) },
         '/users/login': function(req, res) { loginRoute(req, res, cache) },
         '/user/inventory': function(req, res) { getUserInventory(req, res, cache) },
