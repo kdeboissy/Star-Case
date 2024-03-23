@@ -1,4 +1,5 @@
 const { checkToken } = require("../../database/checkToken");
+const { getDatabase } = require("../../database/getDatabase");
 const { getInventory } = require("../../database/inventory");
 
 async function trade(req, res, cache)
@@ -22,6 +23,7 @@ async function trade(req, res, cache)
     itemWanted = req.body.itemWanted;
     itemOffered = req.body.itemOffered;
 
+    let usersDB = await getDatabase("users.json", "users");
     let myUserID = await checkToken(req.headers);
     if (myUserID === -1)
         return res.status(401).send({ message: 'Unauthorized' });
@@ -40,6 +42,7 @@ async function trade(req, res, cache)
 
     cache.activeTrades[trade_username] = {
         userID: myUserID,
+        userName: usersDB[myUserID].username,
         itemWanted: itemWanted,
         itemOffered: itemOffered
     }
