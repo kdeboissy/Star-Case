@@ -10,22 +10,30 @@ function sleep(time) {
 function openCase()
 {
     let theCase = document.getElementById("theCase");
+    let roulette = document.getElementById("roulette");
+    roulette.style.display = "none";
 
     theCase.classList.add('the-case-animated');
     theCase.classList.remove('the-case');
     theCase.classList.add('the-case-animation-0');
 
     sleep(2500).then(() => {
-        theCase.classList.remove('the-case-animated');
-        theCase.classList.add('the-case');
-        theCase.classList.remove('the-case-animation-0');
-
+        roulette.style.display = "flex";
         let i = 0;
+
+        theCase.classList.remove('the-case-animation-0');
 
         var interval = setInterval(function () {
             ++i;
-            if (i >= 803)
-                return clearInterval(interval);
+            if (i >= 803) {
+                theCase.classList.remove('the-case-animated');
+                theCase.classList.add('the-case');
+                clearInterval(interval);
+
+                sleep(1500).then(() => {
+                    roulette.style.display = "none";
+                });
+            }
             document.querySelectorAll('.item-btn').forEach((item) => {
                 item.style.transform = `translateX(${i * (15 - i / 100)}px)`;
             });
@@ -41,7 +49,7 @@ function loadCases()
 
     app.innerHTML = `
 
-<div class="roulette d-flex position-absolute align-items-center justify-content-center">
+<div class="roulette position-absolute align-items-center justify-content-center" style="display: none;" id="roulette">
     <div class="position-absolute" style="margin-top: 10%; width: 10px; height: 10px; color: red;">^</div>
     <div class="roulette-container position-relative d-flex align-items-center justify-content-end">
         <div class="position-relative m-2 item-btn"></div>
