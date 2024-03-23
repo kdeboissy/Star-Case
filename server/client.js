@@ -8,8 +8,8 @@ const options = {
         'content-type': 'application/json',
     },
     data: {
-        username: 'testuse23r',
-        email: 'Jean@gmaila.com',
+        username: 'testusae23r',
+        email: 'Jean@gmokaila.com',
         password: 'testpassword'
     }
 };

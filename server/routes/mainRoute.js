@@ -1,4 +1,4 @@
-async function mainRoute(req, res)
+async function mainRoute(req, res, cache)
 {
     if (req.method !== 'GET')
         return res.status(405).send({ message: 'Please use GET method' });
