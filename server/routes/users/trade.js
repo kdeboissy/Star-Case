@@ -1,4 +1,4 @@
-async function trade(req, res)
+async function trade(req, res, cache)
 {
     let username = null;
     let trade_username = null;

@@ -9,7 +9,7 @@ const { acceptTrade } = require('./routes/users/acceptTrade');
 const express = require('express');
 require('dotenv').config();
 
-async function registerRoutes(app)
+async function registerRoutes(app, cache)
 {
     const routes = {
         '/': function(req, res) { mainRoute(req , res, cache) },
@@ -26,13 +26,14 @@ async function registerRoutes(app)
 }
 
 async function main() {
+    const cache = {}
     const app = express();
     const port = process.env.PORT;
 
     app.use(express.json());
 
     await registerLogRequests(app);
-    await registerRoutes(app);
+    await registerRoutes(app, cache);
 
     app.listen(port, () => {
         console.log(`Server is running on port ${port}`);
