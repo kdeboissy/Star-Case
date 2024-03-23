@@ -1,7 +1,7 @@
 const { createUser } = require("../../database/createUser");
 const { getDatabase } = require("../../database/getDatabase");
 
-async function newUserRoute(req, res)
+async function registerRoute(req, res)
 {
     let username = null;
     let password = null;
@@ -27,5 +27,5 @@ async function newUserRoute(req, res)
 }
 
 module.exports = {
-    newUserRoute
+    registerRoute
 };

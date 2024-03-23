@@ -1,6 +1,7 @@
 const { registerLogRequests } = require('./logs/registerLogRequests');
 const { mainRoute } = require('./routes/mainRoute');
-const { newUserRoute } = require('./routes/users/register');
+const { loginRoute } = require('./routes/users/login');
+const { registerRoute } = require('./routes/users/register');
 const { trade } = require('./routes/users/trade');
 
 const express = require('express');
@@ -10,7 +11,8 @@ async function registerRoutes(app)
 {
     const routes = {
         '/': mainRoute,
-        '/users/register': newUserRoute,
+        '/users/register': registerRoute,
+        '/users/login': loginRoute,
         '/users/trade/:userID': trade
     }
 
