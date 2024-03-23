@@ -1,3 +1,4 @@
+const { checkToken } = require("../database/checkToken");
 const { getDatabase } = require("../database/getDatabase");
 
 async function usersRoute(req, res, cache)
@@ -12,16 +13,15 @@ async function usersRoute(req, res, cache)
     if (userID === -1)
         return res.status(401).send({ message: 'Unauthorized' });
 
-    let activeTrades = cache.activeTrades;
-    let myTrades = {};
-    Object.keys(activeTrades).forEach(async (trade) => {
-        if (trade === userID)
-            myTrades[activeTrades[trade.userID]] = activeTrades[trade];
+    let allUsers = {};
+    Object.keys(database).forEach(async (user) => {
+        if (database[user].userID !== userID)
+            allUsers[database[user].userID] = database[user].username;
     });
 
     return res.status(200).send({
-        numberOfTrades: Object.keys(myTrades).length,
-        trades: myTrades
+        numberOfUsers: Object.keys(allUsers).length,
+        users: allUsers
     });
 }
 
