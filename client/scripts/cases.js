@@ -70,6 +70,16 @@ function openCase()
                 });
             }
 
+            const itemGet = document.getElementById('itemGet');
+
+            itemGet.querySelector(".img-get").src = json.path;
+            itemGet.querySelector(".name-get").innerText = json.name;
+            itemGet.querySelector(".rarity-get").innerText = json.rarity;
+            for (let index = 0; index < items.length; ++index) {
+                if (items[index].itemDatas.name == json.name)
+                    itemGet.style.color = items[index].itemColor;
+            }
+
             let i = 0;
 
             theCase.classList.remove('the-case-animation-0');
@@ -83,7 +93,11 @@ function openCase()
 
                     sleep(1500).then(() => {
                         roulette.style.display = "none";
-                        theCase.onclick = openCase;
+                        itemGet.style.display = "flex";
+                        sleep(1500).then(() => {
+                            itemGet.style.display = "none";
+                            theCase.onclick = openCase;
+                        });
                     });
                 }
                 document.querySelectorAll('.item-btn').forEach((item) => {
@@ -110,7 +124,11 @@ function loadCases()
     box = 0;
 
     app.innerHTML = `
-
+<div id="itemGet" class="item-get flex-column position-absolute align-items-center justify-content-center" style="display: none">
+    <img src="/assets/rondoudou_francais.jpg" class="img-get" style="height: 50%;">
+    <h1 class="mt-5 name-get">unknown</h1>
+    <h4 class="mt-1 rarity-get">(Commun)</h2>
+</div>
 <div class="roulette position-absolute align-items-center justify-content-center" style="display: none;" id="roulette">
     <div class="position-absolute" style="align-self: end; margin-bottom: 20px; width: 10px; height: 10px; color: red;"><i class="fas fa-chevron-up" style="color: #fff;"></i></div>
     <div class="roulette-container position-relative d-flex align-items-center justify-content-end">
