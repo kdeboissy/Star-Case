@@ -47,6 +47,8 @@ function loadInventory()
         JSON.parse(request.responseText)["inventory"].forEach((item) => {
             if (!cacheInventoryTab[item.id])
                 cacheInventoryTab[item.id] = item;
+            if (!images[item.path])
+                preload(item.path);
             var temp = document.createElement('div');
             var image = document.createElement('img');
 

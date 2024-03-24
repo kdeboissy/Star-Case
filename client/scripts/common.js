@@ -97,3 +97,8 @@ function requestAPIProtected(route, method, token, body, callback, errorDom, suc
     };
     request.send(body);
 }
+
+if (!localStorage.getItem("theme"))
+    localStorage.setItem("theme", "light");
+
+document.getElementsByTagName('html')[0].setAttribute("data-bs-theme", localStorage.getItem("theme"));

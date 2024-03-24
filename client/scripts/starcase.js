@@ -10,7 +10,9 @@ function preload() {
 
 preload(
     "/assets/box0.png",
-    "/assets/box1.png"
+    "/assets/box1.png",
+    "/assets/box2.png",
+    "/assets/box3.png"
 )
 
 function logout()
