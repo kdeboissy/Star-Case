@@ -11,7 +11,7 @@ const express = require('express');
 const { userRoute } = require('./routes/userRoute');
 const { tradeRoute } = require('./routes/user/tradeRoute');
 const { usersRoute } = require('./routes/usersRoute');
-const { itemsRoute } = require('./routes/itemRoute');
+const { itemsRoute, itemRoute } = require('./routes/itemRoute');
 require('dotenv').config();
 
 async function registerRoutes(app, cache)
