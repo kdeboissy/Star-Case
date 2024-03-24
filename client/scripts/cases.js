@@ -17,10 +17,41 @@ function openCase()
 
     theCase.classList.add('the-case-animated');
     theCase.classList.remove('the-case');
+    theCase.onclick = "";
     theCase.classList.add('the-case-animation-0');
 
+    document.querySelectorAll('.item-btn').forEach((item) => {
+        item.style.transform = `translateX(0px)`;
+    });
+
     sleep(2500).then(() => {
+        let rect;
+
         roulette.style.display = "flex";
+        rect = roulette.getBoundingClientRect();
+
+        let [x, y] = [rect.width / 2 - 803 * (15 - 803 / 100) + rect.left, rect.height / 2 + rect.top];
+        let find = false;
+        document.querySelectorAll('.item-btn').forEach((item) => {
+            var tempRect = item.getBoundingClientRect();
+
+            if (tempRect.left <= x && tempRect.top <= y && tempRect.left + tempRect.width >= x && tempRect.top + tempRect.height >= y) {
+                item.style.background = "red";
+                find = true;
+            }
+        });
+
+        if (!find) {
+            document.querySelectorAll('.item-btn').forEach((item) => {
+                var tempRect = item.getBoundingClientRect();
+
+                if (tempRect.left <= x && tempRect.top <= y && tempRect.left + tempRect.width * 2 >= x && tempRect.top + tempRect.height >= y) {
+                    item.style.background = "red";
+                    find = true;
+                }
+            });
+        }
+
         let i = 0;
 
         theCase.classList.remove('the-case-animation-0');
@@ -34,6 +65,7 @@ function openCase()
 
                 sleep(1500).then(() => {
                     roulette.style.display = "none";
+                    theCase.onclick = openCase;
                 });
             }
             document.querySelectorAll('.item-btn').forEach((item) => {
@@ -61,7 +93,7 @@ function loadCases()
     app.innerHTML = `
 
 <div class="roulette position-absolute align-items-center justify-content-center" style="display: none;" id="roulette">
-    <div class="position-absolute" style="margin-top: 10%; width: 10px; height: 10px; color: red;">^</div>
+    <div class="position-absolute" style="align-self: end; margin-bottom: 20px; width: 10px; height: 10px; color: red;"><i class="fas fa-chevron-up" style="color: #fff;"></i></div>
     <div class="roulette-container position-relative d-flex align-items-center justify-content-end">
         <div class="position-relative m-2 item-btn"></div>
         <div class="position-relative m-2 item-btn"></div>

@@ -1,6 +1,20 @@
+function sendTradeRequest(id)
+{
+    console.log(id);
+    const errorDom = document.getElementById("errorMessage");
+    const successDom = document.getElementById("successMessage");
+    const loadingDom = document.getElementById("loadingBox");
+
+    requestAPIProtected(
+        `/users/trade/${id}`, "POST", localStorage.getItem("authToken"),
+        JSON.stringify({"itemWanted": [0], "itemOffered": [0]}),
+        function (request) {}, errorDom, successDom, loadingDom);
+}
+
 function showSendTrade(id, username)
 {
     document.getElementById('sendTradeLabel').innerText = `Trade - ${username}`;
+    document.getElementById('sendButtonTradeReq').onclick = function () {sendTradeRequest(id)};
     $("#sendTrade").modal('show');
 }
 
@@ -50,10 +64,34 @@ function loadTrade()
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+        <h2 class="modal-title fs-5 mb-3">I Want:</h2>
+
+        <ul class="list-group mb-3">
+            <li class="d-flex list-group-item" style="color: red">
+                <strong>hello</strong><span style="margin-left: auto">&times <strong>1</strong></spab>
+            </li>
+        </ul>
+
+        <div class="mb-3">
+            <button class="btn btn-primary"><i class="fas fa-plus"></i></button>
+        </div>
+
+
+        <h2 class="modal-title fs-5 mb-3">I Give:</h2>
+
+        <ul class="list-group mb-3">
+            <li class="d-flex list-group-item" style="color: red">
+                <strong>hello</strong><span style="margin-left: auto">&times <strong>1</strong></spab>
+            </li>
+        </ul>
+
+        <div class="mb-3">
+            <button class="btn btn-primary"><i class="fas fa-plus"></i></button>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary">Send</button>
+        <button type="button" class="btn btn-primary" id="sendButtonTradeReq">Send</button>
       </div>
     </div>
   </div>
