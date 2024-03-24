@@ -18,20 +18,24 @@ async function registerRoutes(app, cache)
 {
     const routes = {
         '/': function(req, res) { mainRoute(req , res, cache) },
-        '/user': function(req, res) { userRoute(req, res, cache) },
-        '/items': function(req, res) { itemsRoute(req, res, cache) },
-        '/item/:id': function(req, res) { itemRoute(req, res, cache) },
         '/users': function(req, res) { usersRoute(req, res, cache) },
-        '/users/register': function(req, res) { registerRoute(req, res, cache) },
-        '/users/login': function(req, res) { loginRoute(req, res, cache) },
+        '/user': function(req, res) { userRoute(req, res, cache) },
         '/user/inventory': function(req, res) { getUserInventory(req, res, cache) },
         '/user/trade': function(req, res) { tradeRoute(req, res, cache) },
+
+        '/items': function(req, res) { itemsRoute(req, res, cache) },
+        '/item/:id': function(req, res) { itemRoute(req, res, cache) },
+
+        '/users/register': function(req, res) { registerRoute(req, res, cache) },
+        '/users/login': function(req, res) { loginRoute(req, res, cache) },
         '/users/trade/:userID': function(req, res) { trade(req, res, cache) },
         '/users/accept_trade/:userID': function(req, res) { acceptTrade(req, res, cache) }
     }
 
-    for (const [route, routeFunction] of Object.entries(routes))
+    for (const [route, routeFunction] of Object.entries(routes)){
+        console.info("[+] Registering route: " + route)
         await app.all(route, routeFunction);
+    }
     await app.all('*', async (req, res) => res.status(404).send({error: 'Not Found'}));
 }
 

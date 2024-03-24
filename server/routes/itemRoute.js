@@ -1,5 +1,12 @@
 const { getDatabase } = require("../database/getDatabase");
 
+/**
+ * @description Get all items
+ * @param {*} req request
+ * @param {*} res response
+ * @param {*} cache cache
+ * @returns Promise : {numberOfItems, items: [{itemColor, itemDatas}]}
+ */
 async function itemsRoute(req, res, cache)
 {
     const database = await getDatabase("items.json", "items");
@@ -23,6 +30,13 @@ async function itemsRoute(req, res, cache)
     });
 }
 
+/**
+ * @description Get item by ID
+ * @param {*} req request
+ * @param {*} res response
+ * @param {*} cache cache
+ * @returns Promise : {itemColor, itemDatas}
+ */
 async function itemRoute(req, res, cache)
 {
     const database = await getDatabase("items.json", "items");
