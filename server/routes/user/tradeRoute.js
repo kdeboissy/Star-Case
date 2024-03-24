@@ -1,5 +1,5 @@
-const { checkToken } = require("../database/checkToken");
-const { getDatabase } = require("../database/getDatabase");
+const { checkToken } = require("../../database/checkToken");
+const { getDatabase } = require("../../database/getDatabase");
 
 async function tradeRoute(req, res, cache)
 {
