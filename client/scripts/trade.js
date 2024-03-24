@@ -1,13 +1,40 @@
+const inventory = [];
+
 function sendTradeRequest(id)
 {
-    console.log(id);
     const errorDom = document.getElementById("errorMessage");
     const successDom = document.getElementById("successMessage");
     const loadingDom = document.getElementById("loadingBox");
 
+    if (document.getElementById('wantedList') && document.getElementById('wantedList').querySelectorAll('.option-wanted')) {
+      var temp = Array.from(document.getElementById('wantedList').querySelectorAll('.option-wanted').values()).map((item) => {return parseInt(item.value) != -1});
+
+      for (let index = 0; index < temp.length; ++index) {
+        const element = temp[index];
+
+        if (!element) {
+          return;
+        }
+      }
+    }
+
+    if (document.getElementById('giveList') && document.getElementById('giveList').querySelectorAll('.option-inventory')) {
+      var temp =  Array.from(document.getElementById('giveList').querySelectorAll('.option-inventory').values()).map((item) => {return parseInt(item.value) != -1});
+
+      for (let index = 0; index < temp.length; ++index) {
+        const element = temp[index];
+
+        if (!element) {
+          return;
+        }
+      }
+    }
+
+    $("#sendTrade").modal('hide');
+
     requestAPIProtected(
         `/users/trade/${id}`, "POST", localStorage.getItem("authToken"),
-        JSON.stringify({"itemWanted": [0], "itemOffered": [0]}),
+        JSON.stringify({"itemWanted": document.getElementById('wantedList') && document.getElementById('wantedList').querySelectorAll('.option-wanted') ? Array.from(document.getElementById('wantedList').querySelectorAll('.option-wanted').values()).map((item) => {return parseInt(item.value)}) : [], "itemOffered": document.getElementById('giveList') && document.getElementById('giveList').querySelectorAll('.option-inventory') ? Array.from(document.getElementById('giveList').querySelectorAll('.option-inventory').values()).map((item) => {return parseInt(item.value)}) : []}),
         function (request) {}, errorDom, successDom, loadingDom);
 }
 
@@ -16,12 +43,74 @@ function showSendTrade(id, username)
     document.getElementById('sendTradeLabel').innerText = `Trade - ${username}`;
     document.getElementById('sendButtonTradeReq').onclick = function () {sendTradeRequest(id)};
     $("#sendTrade").modal('show');
+
+    document.getElementById('giveList').innerHTML = '';
+    document.getElementById('wantedList').innerHTML = '';
+}
+
+function cacheInventory()
+{
+  const errorDom = document.getElementById("errorMessage");
+
+  requestAPIProtected(
+    `/user/inventory`, "GET", localStorage.getItem("authToken"),
+    '',
+    function (request) {
+      while (inventory.length)
+        inventory.pop();
+      JSON.parse(request.responseText)["inventory"].forEach((item) => {
+        inventory.push(item);
+      });
+    }, errorDom, document.createElement('div'), document.createElement('div'));
+
+  requestAPIProtected(
+    `/items`, "GET", localStorage.getItem("authToken"),
+    '',
+    function (request) {
+      while (items.length)
+        items.pop();
+      JSON.parse(request.responseText)["items"].forEach((item) => {
+        items.push(item);
+      });
+    }, errorDom, document.createElement('div'), document.createElement('div'));
 }
 
 function showTrade(id, username)
 {
     document.getElementById('acceptTradeLabel').innerText = `Trade - ${username}`;
     $("#acceptTrade").modal('show');
+}
+
+function addItemRowWanted()
+{
+  const wantedList = document.getElementById('wantedList');
+
+  wantedList.innerHTML += `
+<li class="d-flex list-group-item align-items-center justify-content-center">
+  <select class="form-select option-wanted" style="width: 80%; border: 0; --bs-form-select-bg-img: none">
+    <option value="-1" selected>Choose...</option>
+    ${items.map((item) => {return `<option value="${item["itemDatas"].id}">${item["itemDatas"].name}</option>`} ).join()}
+  </select>
+  <span style="margin-left: auto">&times <strong>1</strong></span>
+  <button class="btn" style="margin-left: auto" onclick="this.parentElement.remove();"><strong>✕</strong></button>
+</li>
+`;
+}
+
+function addItemRowInventory()
+{
+  const giveList = document.getElementById('giveList');
+
+  giveList.innerHTML += `
+<li class="d-flex list-group-item align-items-center justify-content-center">
+  <select class="form-select option-inventory" style="width: 80%; border: 0; --bs-form-select-bg-img: none">
+    <option value="-1" selected>Choose...</option>
+    ${inventory.map((item) => {return `<option value="${item.id}">${item.name}</option>`} ).join()}
+  </select>
+  <span style="margin-left: auto">&times <strong>1</strong></span>
+  <button class="btn" style="margin-left: auto" onclick="this.parentElement.remove();"><strong>✕</strong></button>
+</li>
+`;
 }
 
 function loadTrade()
@@ -66,27 +155,21 @@ function loadTrade()
       <div class="modal-body">
         <h2 class="modal-title fs-5 mb-3">I Want:</h2>
 
-        <ul class="list-group mb-3">
-            <li class="d-flex list-group-item" style="color: red">
-                <strong>hello</strong><span style="margin-left: auto">&times <strong>1</strong></spab>
-            </li>
+        <ul class="list-group mb-3" id="wantedList">
         </ul>
 
         <div class="mb-3">
-            <button class="btn btn-primary"><i class="fas fa-plus"></i></button>
+            <button class="btn btn-primary" onclick="addItemRowWanted();"><i class="fas fa-plus"></i></button>
         </div>
 
 
         <h2 class="modal-title fs-5 mb-3">I Give:</h2>
 
-        <ul class="list-group mb-3">
-            <li class="d-flex list-group-item" style="color: red">
-                <strong>hello</strong><span style="margin-left: auto">&times <strong>1</strong></spab>
-            </li>
+        <ul class="list-group mb-3" id="giveList">
         </ul>
 
         <div class="mb-3">
-            <button class="btn btn-primary"><i class="fas fa-plus"></i></button>
+            <button class="btn btn-primary" onclick="addItemRowInventory();"><i class="fas fa-plus"></i></button>
         </div>
       </div>
       <div class="modal-footer">
@@ -121,8 +204,10 @@ function loadTrade()
     const tradeDom = document.getElementById("tradeRequests");
     const tradeUsersDom = document.getElementById('tradeUsers');
 
+    cacheInventory();
+
     requestAPIProtected(
-        "/trade", "GET", localStorage.getItem("authToken"),
+        "/user/trade", "GET", localStorage.getItem("authToken"),
         '',
         function (request) {
             tradeDom.innerHTML = '';

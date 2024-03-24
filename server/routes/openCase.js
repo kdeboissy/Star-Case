@@ -12,10 +12,17 @@ async function openCase(req, res, cache)
     const items = await getDatabase("items.json", "items");
     const random = await getRandomFromStars();
     let listItems = [];
+    let keys = Object.keys(items);
 
-    Object.keys(items).forEach(async (item) => {
-        listItems.push(item * await getProbability(items[item].rarity));
-    });
+    for (let index = 0; index < keys.length; ++index) {
+        const item = keys[index];
+
+        let temp = await getProbability(items[item].rarity);
+
+        for (let index = 0; index < temp; ++index) {
+            listItems.push(item);
+        }
+    }
 
     let pickRandomItem = listItems[random % listItems.length];
 
