@@ -24,7 +24,7 @@ async function acceptTrade(req, res, cache)
     let myInventory = await getInventory(userID);
     let otherInventory = await getInventory(tradeUsername);
 
-    for (let item of cache.activeTrades[userID].itemOffered)
+    for (let item of cache.activeTrades[userID].itemWanted)
     {
         let find = false;
         myInventory.inventory.forEach((element) => {
@@ -36,7 +36,7 @@ async function acceptTrade(req, res, cache)
         if (!find)
             return res.status(400).send({ message: 'Not all items offered are in the inventory' });
     }
-    for (let item of cache.activeTrades[userID].itemWanted)
+    for (let item of cache.activeTrades[userID].itemOffered)
     {
         let find = false;
         otherInventory.inventory.forEach((element) => {
@@ -60,6 +60,7 @@ async function acceptTrade(req, res, cache)
         await removeItemInInventory(userID, item);
     }
 
+    delete cache.activeTrades[userID];
     return res.status(200).send({ message: 'Trade accepted with success' });
 }
 
