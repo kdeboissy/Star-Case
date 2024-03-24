@@ -4,8 +4,100 @@ const inventoryBtn = document.getElementById('inventoryBtn');
 const tradeBtn = document.getElementById('tradeBtn');
 
 const items = [];
+const particlesArray = [];
 
+let cycles = 0;
 let box = 0;
+
+class Particle {
+  constructor(x, y, context, color, speedX, speedY, radius) {
+    this.x = x;
+    this.y = y;
+    this.radius = radius;
+    this.speedX = speedX;
+    this.speedY = speedY;
+    this.color = color;
+    this.context = context;
+  }
+
+  draw() {
+    //arc
+    this.context.beginPath();
+    this.context.arc(this.x, this.y, this.radius, 0, 2 * Math.PI, false);
+
+    this.context.fillStyle = this.color;
+    this.context.fill();
+  }
+
+  update() {
+    this.x += this.speedX;
+    this.y += -1 * this.speedY;
+  }
+}
+
+const drawParticles = () => {
+  particlesArray.forEach((particle) => {
+    particle.draw();
+  });
+};
+
+const updateParticles = () => {
+  particlesArray.forEach((particle) => {
+    particle.update();
+  });
+};
+
+const createParticles = (x, y, context, color, speedX, speedY, radius) => {
+  for (let i = 0; i < 10; i++) {
+    const particle = new Particle(x, y, context, color, speedX, speedY, radius);
+    particlesArray.push(particle);
+  }
+};
+
+const animate = (context, canvas) => {
+  requestAnimationFrame(function () {animate(context, canvas)});
+
+  context.fillStyle = "rgba(0, 0, 0, 0.25)";
+  context.fillRect(0, 0, canvas.width, canvas.height);
+
+  cycles = (cycles + 1) % 50;
+
+  if (cycles == 49) {
+    if (getRandInt(0, 1)) {
+        var x = getRandInt(0, canvas.width);
+        var y = canvas.height;
+    } else {
+        var y = getRandInt(0, canvas.height);
+        var x = 0;
+    }
+    createParticles(x, y, context, `rgb(230, 230, 230)`, 0.1, 0.1, 1);
+  }
+
+  drawParticles();
+  updateParticles();
+};
+
+function startParticleBackground()
+{
+    const canvas = document.getElementById("canvas");
+    const context = canvas.getContext("2d");
+
+    canvas.width = canvas.parentElement.getBoundingClientRect().width;
+    canvas.height = canvas.parentElement.getBoundingClientRect().height;
+
+    for (let index = 0; index < 100; ++index) {
+        var x = getRandInt(0, canvas.width);
+        var y = getRandInt(0, canvas.height);
+        createParticles(x, y, context, `rgb(230, 230, 230)`, 0.1, 0.1, 1);
+    }
+
+    animate(context, canvas);
+
+    window.addEventListener("resize", () => {
+        canvas.width = canvas.parentElement.getBoundingClientRect().width;
+        canvas.height = canvas.parentElement.getBoundingClientRect().height;
+    });
+}
 
 function sleep(time) {
     return new Promise((resolve) => setTimeout(resolve, time));
@@ -247,7 +339,7 @@ function loadCases()
         <div class="position-relative m-2 item-btn align-items-center justify-content-center d-flex"></div>
     </div>
 </div>
-<div style="width: 98%; height: 98%; background: black; border-radius: 20px;">
+<div style="width: 98%; height: 98%; border-radius: 20px;">
     <div class="d-flex position-absolute" style="width: calc(100% - 280px - 1.5em); left: calc(280px + 1.5rem);">
         <div class="alert alert-danger mt-3 position-relative" hidden="true" style="width: 80%; margin-left:auto; margin-right: auto;" id="errorMessage"></div>
         <div class="alert alert-success mt-3 position-relative" hidden="true" style="position: absolute; width: 80%; margin-left:auto; margin-right: auto;" id="successMessage"></div>
@@ -272,6 +364,8 @@ function loadCases()
     <div class="d-flex align-items-center justify-content-center" style="overflow-y: hidden; width: 100%; height: 100%;">
         <img src="/assets/box0.png" class="the-case" id="theCase" onclick="openCase();"/>
     </div>
+
+    <canvas class="position-absolute" style="border-radius: 20px; left: calc(1% + 280px + 1.5em); top: 1%; z-index: -15;" height="600" width="600" id="canvas">
 </div>
 `;
 
@@ -287,4 +381,6 @@ requestAPIProtected(
         items.push(item);
     });
 }, errorDom, document.createElement('div'), document.createElement('div'));
+
+startParticleBackground();
 }
