@@ -226,15 +226,21 @@
         },
         "35": {
             "name": "Gardien rouge : Pablo",
-            "rarity": "Epique",
+            "rarity": "Mythique",
             "price": 1000,
             "path": "/assets/gardien_rouge_d'epitech.png"
         },
         "36": {
             "name": "Mordor",
-            "rarity": "rare",
+            "rarity": "Rare",
             "price": 100,
-            "path": "/assets/selles/mordor.png"
+            "path": "/assets/salles/mordor.png"
+        },
+        "37": {
+            "name": "La chevelure d'Aymeric",
+            "rarity": "Mythique",
+            "price": 100,
+            "path": "/assets/LaChevelureDAymeric.png"
         }
     }
 }
