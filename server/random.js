@@ -1,3 +1,23 @@
+async function getDate()
+{
+    const date = new Date();
+    const lastDate = new Date(date.getTime() - (24 * 60 * 60 * 1000))
+    const toReturn = {}
+
+    toReturn.currentYear = date.getFullYear();
+    toReturn.currentMonth = (date.getMonth() + 1) < 10 ? `0${date.getMonth() + 1}` : (date.getMonth() + 1)
+    toReturn.currentDay = date.getDate() < 10 ? `0${date.getDate()}` : date.getDate();
+    toReturn.currentHour = date.getHours() < 10 ? `0${date.getHours()}` : date.getHours();
+    toReturn.currentMin = date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes();
+    toReturn.currentSec = date.getSeconds() < 10 ? `0${date.getSeconds()}` : date.getSeconds();
+
+    toReturn.lastYear = lastDate.getFullYear();
+    toReturn.lastMonth = (lastDate.getMonth() + 1) < 10 ? `0${lastDate.getMonth() + 1}` : (lastDate.getMonth() + 1)
+    toReturn.lastDay = lastDate.getDate() < 10 ? `0${lastDate.getDate()}` : lastDate.getDate();
+
+    return toReturn;
+}
+
 async function getRandInt(min, max)
 {
     return Math.floor(Math.random() * (max - min + 1)) + min;
