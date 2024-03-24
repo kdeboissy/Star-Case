@@ -6,6 +6,11 @@ const tradeBtn = document.getElementById('tradeBtn');
 const items = [];
 const particlesArray = [];
 
+let oldAnimation;
+
+let canvas;
+let context;
+
 let cycles = 0;
 let box = 0;
 
@@ -55,7 +60,8 @@ const createParticles = (x, y, context, color, speedX, speedY, radius) => {
 };
 
 const animate = (context, canvas) => {
-  requestAnimationFrame(function () {animate(context, canvas)});
+  oldAnimation = requestAnimationFrame(function () {animate(context, canvas)});
+
 
   context.fillStyle = "rgba(0, 0, 0, 0.25)";
   context.fillRect(0, 0, canvas.width, canvas.height);
@@ -79,11 +85,17 @@ const animate = (context, canvas) => {
 
 function startParticleBackground()
 {
-    const canvas = document.getElementById("canvas");
-    const context = canvas.getContext("2d");
+    canvas = document.getElementById("canvas");
+    context = canvas.getContext("2d");
 
     canvas.width = canvas.parentElement.getBoundingClientRect().width;
     canvas.height = canvas.parentElement.getBoundingClientRect().height;
+
+    if (oldAnimation)
+        cancelAnimationFrame(oldAnimation);
+
+    while (particlesArray.length)
+        particlesArray.pop()
 
     for (let index = 0; index < 100; ++index) {
         var x = getRandInt(0, canvas.width);
