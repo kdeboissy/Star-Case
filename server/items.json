@@ -7,11 +7,11 @@
         "Mythique": "#FF0000"
     },
     "dropRate": {
-        "Commun": 60,
-        "Rare": 31.9,
-        "Epique": 7,
-        "Legendaire": 1,
-        "Mythique": 0.1
+        "Commun": 0.600,
+        "Rare": 0.310,
+        "Epique": 0.070,
+        "Legendaire": 0.010,
+        "Mythique": 0.001
     },
     "items": {
         "0": {
