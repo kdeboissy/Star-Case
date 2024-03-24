@@ -1,3 +1,4 @@
+const { checkToken } = require("../database/checkToken");
 const { getDatabase } = require("../database/getDatabase");
 const { addItemInInventory } = require("../database/inventory");
 const { getRandomFromStars } = require("../random");
