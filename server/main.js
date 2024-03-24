@@ -11,6 +11,7 @@ const express = require('express');
 const { userRoute } = require('./routes/userRoute');
 const { tradeRoute } = require('./routes/user/tradeRoute');
 const { usersRoute } = require('./routes/usersRoute');
+const { itemsRoute } = require('./routes/itemRoute');
 require('dotenv').config();
 
 async function registerRoutes(app, cache)
@@ -18,6 +19,7 @@ async function registerRoutes(app, cache)
     const routes = {
         '/': function(req, res) { mainRoute(req , res, cache) },
         '/user': function(req, res) { userRoute(req, res, cache) },
+        '/items': function(req, res) { itemsRoute(req, res, cache) },
         '/item/:id': function(req, res) { itemRoute(req, res, cache) },
         '/users': function(req, res) { usersRoute(req, res, cache) },
         '/users/register': function(req, res) { registerRoute(req, res, cache) },
