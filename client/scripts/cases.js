@@ -215,8 +215,9 @@ function openCase()
                         for (let _ = 0; _ < getRandInt(5, 10); ++_) {
                             var fireWorkX = getRandInt(0, canvas.width);
                             var fireWorkY = getRandInt(0, canvas.height);
-                            var [speedX, speedY] = [getRandInt(-3, 3), getRandInt(-3, 3)];
+
                             for (let index = 0; index < getRandInt(0, 100); ++index) {
+                                var [speedX, speedY] = [getRandInt(-3, 3), getRandInt(-3, 3)];
                                 createParticles(fireWorkX, fireWorkY, context, `hsl(${getRandInt(0, 50)}, 100%, 50%)`, speedX ? speedX : 1, speedY ? speedY : 1, getRandInt(1, 6));
                             }
                         }
