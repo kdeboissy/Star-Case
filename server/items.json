@@ -217,6 +217,24 @@
             "rarity": "Rare",
             "price": 10,
             "path": "/assets/Pastas/PastaBox11.jpg"
+        },
+        "34": {
+            "name": "Gardien bleu : Johnny",
+            "rarity": "Epique",
+            "price": 1000,
+            "path": "/assets/gardien_bleu_d'epitech.png"
+        },
+        "35": {
+            "name": "Gardien rouge : Pablo",
+            "rarity": "Epique",
+            "price": 1000,
+            "path": "/assets/gardien_rouge_d'epitech.png"
+        },
+        "36": {
+            "name": "Mordor",
+            "rarity": "rare",
+            "price": 100,
+            "path": "/assets/selles/mordor.png"
         }
     }
 }
