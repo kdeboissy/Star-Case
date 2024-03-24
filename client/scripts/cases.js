@@ -204,6 +204,13 @@ function openCase()
                     clearInterval(interval);
 
                     sleep(1500).then(() => {
+                        for (let _ = 0; _ < getRandInt(5, 10); ++_) {
+                            var fireWorkX = getRandInt(0, canvas.width);
+                            var fireWorkY = getRandInt(0, canvas.height);
+                            for (let index = 0; index < getRandInt(0, 100); ++index) {
+                                createParticles(fireWorkX, fireWorkY, context, `hsl(${getRandInt(0, 50)}, 100%, 50%)`, getRandInt(-3, 3), getRandInt(-3, 3), getRandInt(1, 6));
+                            }
+                        }
                         roulette.style.display = "none";
                         itemGet.style.display = "flex";
                         sleep(2500).then(() => {
