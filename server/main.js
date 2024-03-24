@@ -13,6 +13,7 @@ const { tradeRoute } = require('./routes/user/tradeRoute');
 const { usersRoute } = require('./routes/usersRoute');
 const { itemsRoute, itemRoute } = require('./routes/itemRoute');
 const { openCase } = require('./routes/openCase');
+const { refuseTrade } = require('./routes/users/refuseTrade');
 require('dotenv').config();
 
 async function registerRoutes(app, cache)
@@ -32,7 +33,8 @@ async function registerRoutes(app, cache)
         '/users/register': function(req, res) { registerRoute(req, res, cache) },
         '/users/login': function(req, res) { loginRoute(req, res, cache) },
         '/users/trade/:userID': function(req, res) { trade(req, res, cache) },
-        '/users/accept_trade/:userID': function(req, res) { acceptTrade(req, res, cache) }
+        '/users/accept_trade/:userID': function(req, res) { acceptTrade(req, res, cache) },
+        '/users/refuse_trade/:userID': function(req, res) { refuseTrade(req, res, cache) }
     }
 
     for (const [route, routeFunction] of Object.entries(routes)){
@@ -58,6 +60,13 @@ async function initCache(cache)
     cache.activeTrades = {};
 }
 
+function showCache(cache)
+{
+    setInterval(() => {
+        console.log(cache);
+    }, 2500);
+}
+
 async function main() {
     const cache = {}
     const app = express();
@@ -68,6 +77,7 @@ async function main() {
     app.use(handleOptionRequests);
 
     await initCache(cache);
+    // showCache(cache);
     await registerLogRequests(app);
     await registerRoutes(app, cache);
 
