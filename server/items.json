@@ -1,10 +1,10 @@
 {
     "colors": {
-        "Commun": "#000000",
-        "Rare": "#0000FF",
-        "Epique": "#FF00FF",
-        "Legendaire": "#FFA500",
-        "Mythique": "#FF0000"
+        "Commun": "#20c97a",
+        "Rare": "#4938e8",
+        "Epique": "#9d12e3",
+        "Legendaire": "#e39312",
+        "Mythique": "#a6271e"
     },
     "dropRate": {
         "Commun": 0.600,
