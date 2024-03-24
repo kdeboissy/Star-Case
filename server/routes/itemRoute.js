@@ -18,9 +18,11 @@ async function itemsRoute(req, res, cache)
     if (!database)
         return res.status(500).send({ message: 'Database error' });
     Object.keys(database).forEach(async (item) => {
+        let itemData = database[item];
+        itemData.id = item;
         items.push({
             itemColor: colors[database[item].rarity],
-            itemDatas: database[item]
+            itemDatas: itemData
         });
     })
 
