@@ -16,7 +16,7 @@ async function getUserInventory(req, res)
     if (database === null || database === undefined || database[userID] === null || database[userID] === undefined)
         return res.status(200).send({
             inventorySize: 0,
-            inventory: {}
+            inventory: []
         });
 
     return res.status(200).send(
