@@ -1,3 +1,4 @@
+const { checkToken } = require("../../database/checkToken");
 const { addItemInInventory, removeItemInInventory, getInventory } = require("../../database/inventory");
 
 async function acceptTrade(req, res, cache)

@@ -1,3 +1,5 @@
+const { checkToken } = require("../../database/checkToken");
+
 async function refuseTrade(req, res, cache)
 {
     let tradeUsername = null;
