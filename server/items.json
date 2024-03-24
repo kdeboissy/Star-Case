@@ -72,7 +72,7 @@
             "name": "Bulle planétaire",
             "rarity": "Rare",
             "price": 100,
-            "path": "assets/Stars/BullePlanetaire.jpg"
+            "path": "/assets/Stars/BullePlanetaire.jpg"
         },
         "10": {
             "name": "Rayon stellaire",
@@ -85,6 +85,60 @@
             "rarity": "Rare",
             "price": 100,
             "path": "/assets/Stars/VoieLacteeEnBocal.jpg"
+        },
+        "12": {
+            "name": "Rondoudou angelique",
+            "rarity": "Commun",
+            "price": 10,
+            "path": "/assets/angel_rondoudou.jpg"
+        },
+        "13": {
+            "name": "Rondoudou demoniaque",
+            "rarity": "Commun",
+            "price": 10,
+            "path": "/assets/demon_rondoudou.jpg"
+        },
+        "14": {
+            "name": "Rondoudou mexicain",
+            "rarity": "Commun",
+            "price": 10,
+            "path": "/assets/maxican_rondoudou.jpg"
+        },
+        "15": {
+            "name": "Rondoudou francais",
+            "rarity": "Commun",
+            "price": 10,
+            "path": "/assets/rondoudou_francais.jpg"
+        },
+        "16": {
+            "name": "Rondoudou pas content",
+            "rarity": "Commun",
+            "price": 10,
+            "path": "/assets/angry_rondoudou.jpg"
+        },
+        "17": {
+            "name": "Rondoudou russe",
+            "rarity": "Commun",
+            "price": 10,
+            "path": "/assets/russian_rondoudou.jpg"
+        },
+        "18": {
+            "name": "Rondoudou pere noel",
+            "rarity": "Commun",
+            "price": 10,
+            "path": "/assets/santa_rondoudou.jpg"
+        },
+        "19": {
+            "name": "Rondoudou on stage",
+            "rarity": "Commun",
+            "price": 10,
+            "path": "/assets/singing_rondoudou.jpg"
+        },
+        "20": {
+            "name": "Rondoudou endormi",
+            "rarity": "Commun",
+            "price": 10,
+            "path": "/assets/sleeping_rondoudou.jpg"
         }
     }
 }
