@@ -32,7 +32,7 @@ async function openCase(req, res, cache)
 
     if (req.method !== 'GET')
         return res.status(401).send({ message: 'Please use GET method' });
-    if (!req.params || !req.params.userID)
+    if (!req.params || !req.params.boxID)
         crateID = 0;
     else
         crateID = req.params.boxID;
