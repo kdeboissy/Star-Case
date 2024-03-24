@@ -2,15 +2,15 @@ const axios = require('axios');
 
 const options = {
     method: 'POST',
-    url: 'http://localhost:8082/users/trade/0',
+    url: 'http://localhost:8082/users/trade/1',
     params: { 'api-version': '3.0' },
     headers: {
         'content-type': 'application/json',
-        'authorization': 'eyJhbGciOiJIUzI1NiJ9.SmVhbkB0ZXN0LmNvbToxNzExMTk2NTk5MTQzOiQyYiQxMCRGZGY4VnV5ZjJXZlZrY29kM0hkQmlPRHJOdmVpS0RCMjM4bzJpZlR2OGZWRlVQeEFXNW43Rw.ffgp7UKfmwBdX4Uao-jlhMCCRzzQeHKlAaQ7PziM9KM'
+        'authorization': 'eyJhbGciOiJIUzI1NiJ9.SmVhbkBnbWFpbGEuY29tOjE3MTExODkwNTUwMzg6JDJiJDEwJEZkZjhWdXlmMldmVmtjb2QzSGRCaU96L25MMFBCMmQ3Ynp1WHJJOUlJWE9rdkR6THpGUngu.vI0ZUjv4Q_70kWivOtge5QZA7EjdNqtMgIjLlfCSahI'
     },
     data: {
         itemWanted: [],
-        itemOffered: []
+        itemOffered: [0, 1, 0]
     }
 };
 

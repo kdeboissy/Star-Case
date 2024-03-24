@@ -12,6 +12,7 @@ const { userRoute } = require('./routes/userRoute');
 const { tradeRoute } = require('./routes/user/tradeRoute');
 const { usersRoute } = require('./routes/usersRoute');
 const { itemsRoute, itemRoute } = require('./routes/itemRoute');
+const { openCase } = require('./routes/openCase');
 require('dotenv').config();
 
 async function registerRoutes(app, cache)
@@ -22,6 +23,8 @@ async function registerRoutes(app, cache)
         '/user': function(req, res) { userRoute(req, res, cache) },
         '/user/inventory': function(req, res) { getUserInventory(req, res, cache) },
         '/user/trade': function(req, res) { tradeRoute(req, res, cache) },
+
+        '/opencase': function(req, res) { openCase(req, res, cache) },
 
         '/items': function(req, res) { itemsRoute(req, res, cache) },
         '/item/:id': function(req, res) { itemRoute(req, res, cache) },
