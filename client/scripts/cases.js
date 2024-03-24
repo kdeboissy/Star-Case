@@ -49,6 +49,7 @@ function openCase()
 
         sleep(2500).then(() => {
             let rect;
+            let shift = 0;
 
             roulette.style.display = "flex";
             rect = roulette.getBoundingClientRect();
@@ -60,6 +61,7 @@ function openCase()
 
                 if (tempRect.left <= x && tempRect.top <= y && tempRect.left + tempRect.width >= x && tempRect.top + tempRect.height >= y) {
                     item.innerHTML = `<img src=${json.path} style="width: 80%;">`;
+                    shift = (tempRect.left + tempRect.width / 2) - x;
                     find = true;
                 }
             });
@@ -70,6 +72,7 @@ function openCase()
 
                     if (tempRect.left <= x && tempRect.top <= y && tempRect.left + tempRect.width * 2 >= x && tempRect.top + tempRect.height >= y) {
                         item.innerHTML = `<img src=${json.path} style="width: 80%;">`;
+                        shift = (tempRect.left + tempRect.width / 2) - x;
                         find = true;
                     }
                 });
@@ -106,7 +109,7 @@ function openCase()
                     });
                 }
                 document.querySelectorAll('.item-btn').forEach((item) => {
-                    item.style.transform = `translateX(${i * (15 - i / 100)}px)`;
+                    item.style.transform = `translateX(${i * (15 - i / 100) - shift}px)`;
                 });
             }, 10);
         });

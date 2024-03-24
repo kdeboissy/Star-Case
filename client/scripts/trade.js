@@ -75,10 +75,77 @@ function cacheInventory()
     }, errorDom, document.createElement('div'), document.createElement('div'));
 }
 
-function showTrade(id, username)
+function getItemById(id)
+{
+  for (let index = 0; index < items.length; ++index) {
+    const element = items[index];
+
+    if (element["itemDatas"].id == id)
+      return (element);
+  }
+}
+
+function refuseTradeUser(id)
+{
+  const errorDom = document.getElementById("errorMessage");
+  const successDom = document.getElementById("successMessage");
+  const loadingDom = document.getElementById('loadingBox');
+
+  $("#acceptTrade").modal('hide');
+
+  requestAPIProtected(
+    `/users/refuse_trade/${id}`, "POST", localStorage.getItem("authToken"),
+    '',
+    function (request) {
+    }, errorDom, successDom, loadingDom);
+}
+
+function acceptTradeUser(id)
+{
+  const errorDom = document.getElementById("errorMessage");
+  const successDom = document.getElementById("successMessage");
+  const loadingDom = document.getElementById('loadingBox');
+
+  $("#acceptTrade").modal('hide');
+
+  requestAPIProtected(
+    `/users/accept_trade/${id}`, "POST", localStorage.getItem("authToken"),
+    '',
+    function (request) {
+    }, errorDom, successDom, loadingDom);
+}
+
+function showTrade(id, username, want, give)
 {
     document.getElementById('acceptTradeLabel').innerText = `Trade - ${username}`;
     $("#acceptTrade").modal('show');
+
+    const wanted = document.getElementById('wantedListAccept');
+    const given = document.getElementById('giveListAccept');
+
+    wanted.innerHTML = ''
+    given.innerHTML = '';
+
+    want.forEach((item) => {
+      wanted.innerHTML += `
+      <li class="d-flex list-group-item align-items-center justify-content-center">
+        <strong>${getItemById(item)["itemDatas"].name}</strong>
+        <span style="margin-left: auto">&times <strong>1</strong></span>
+      </li>
+      `;
+    });
+
+    give.forEach((item) => {
+      given.innerHTML += `
+      <li class="d-flex list-group-item align-items-center justify-content-center">
+        <strong>${getItemById(item)["itemDatas"].name}</strong>
+        <span style="margin-left: auto">&times <strong>1</strong></span>
+      </li>
+      `;
+    });
+
+    document.getElementById('btnRefuse').onclick = function () {refuseTradeUser(id)};
+    document.getElementById('btnAccept').onclick = function () {acceptTradeUser(id)};
 }
 
 function addItemRowWanted()
@@ -188,10 +255,19 @@ function loadTrade()
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+        <h2 class="modal-title fs-5 mb-3">He get:</h2>
+
+        <ul class="list-group mb-3" id="wantedListAccept">
+        </ul>
+
+        <h2 class="modal-title fs-5 mb-3">You get:</h2>
+
+        <ul class="list-group mb-3" id="giveListAccept">
+        </ul>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Refuse</button>
-        <button type="button" class="btn btn-primary">Accept</button>
+        <button type="button" class="btn btn-secondary" id="btnRefuse">Refuse</button>
+        <button type="button" class="btn btn-primary" id="btnAccept">Accept</button>
       </div>
     </div>
   </div>
@@ -218,11 +294,11 @@ function loadTrade()
                 var i = document.createElement('i');
 
                 a.classList.add("nav-link", "link-body-emphasis");
-                a.href = `javascript:showTrade(${element}, "${json[element]["username"].replaceAll('"', '\\"')}");`;
+                a.href = `javascript:showTrade(${element}, "${json[element]["userName"].replaceAll('"', '\\"')}", [${json[element]["itemWanted"].join(',').replaceAll('"', '\\"')}], [${json[element]["itemOffered"].join(',').replaceAll('"', '\\"')}]);`;
                 i.classList.add("fas", "fa-user", "me-2");
 
                 a.appendChild(i);
-                a.innerHTML += json[element]["username"];
+                a.innerHTML += json[element]["userName"];
                 li.appendChild(a);
                 tradeDom.appendChild(li);
             });
