@@ -18,7 +18,7 @@
             "name": "Rondoudou",
             "rarity": "Commun",
             "price": 10,
-            "path": "/assets/Rondoudou.jpg"
+            "path": "/assets/rondoudou/Rondoudou.jpg"
         },
         "1": {
             "name": "Hugo",
@@ -36,7 +36,7 @@
             "name": "Rondoudou shiny",
             "rarity": "Legendaire",
             "price": 10000,
-            "path": "/assets/RondoudouShiny.jpg"
+            "path": "/assets/rondoudou/RondoudouShiny.jpg"
         },
         "4": {
             "name": "Pain au chocolat",
@@ -90,61 +90,61 @@
             "name": "Rondoudou angelique",
             "rarity": "Commun",
             "price": 10,
-            "path": "/assets/angel_rondoudou.jpg"
+            "path": "/assets/rondoudou/angel_rondoudou.jpg"
         },
         "13": {
             "name": "Rondoudou demoniaque",
             "rarity": "Commun",
             "price": 10,
-            "path": "/assets/demon_rondoudou.jpg"
+            "path": "/assets/rondoudou/demon_rondoudou.jpg"
         },
         "14": {
             "name": "Rondoudou mexicain",
             "rarity": "Commun",
             "price": 10,
-            "path": "/assets/maxican_rondoudou.jpg"
+            "path": "/assets/rondoudou/maxican_rondoudou.jpg"
         },
         "15": {
             "name": "Rondoudou francais",
             "rarity": "Commun",
             "price": 10,
-            "path": "/assets/rondoudou_francais.jpg"
+            "path": "/assets/rondoudou/rondoudou_francais.jpg"
         },
         "16": {
             "name": "Rondoudou pas content",
             "rarity": "Commun",
             "price": 10,
-            "path": "/assets/angry_rondoudou.jpg"
+            "path": "/assets/rondoudou/angry_rondoudou.jpg"
         },
         "17": {
             "name": "Rondoudou russe",
             "rarity": "Commun",
             "price": 10,
-            "path": "/assets/russian_rondoudou.jpg"
+            "path": "/assets/rondoudou/russian_rondoudou.jpg"
         },
         "18": {
             "name": "Rondoudou pere noel",
             "rarity": "Commun",
             "price": 10,
-            "path": "/assets/santa_rondoudou.jpg"
+            "path": "/assets/rondoudou/santa_rondoudou.jpg"
         },
         "19": {
             "name": "Rondoudou on stage",
             "rarity": "Commun",
             "price": 10,
-            "path": "/assets/singing_rondoudou.jpg"
+            "path": "/assets/rondoudou/singing_rondoudou.jpg"
         },
         "20": {
             "name": "Rondoudou endormi",
             "rarity": "Commun",
             "price": 10,
-            "path": "/assets/sleeping_rondoudou.jpg"
+            "path": "/assets/rondoudou/sleeping_rondoudou.jpg"
         },
         "21": {
             "name": "Rondoudou anglais",
             "rarity": "Commun",
             "price": 10,
-            "path": "/assets/english_rondoudou.jpg"
+            "path": "/assets/rondoudou/english_rondoudou.jpg"
         },
         "22": {
             "name": "PastaBox originelle",
