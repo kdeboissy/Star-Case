@@ -10,7 +10,7 @@ const { getDatabase } = require("../database/getDatabase");
 async function itemsRoute(req, res, cache)
 {
     const database = await getDatabase("items.json", "items");
-    const colors = await getDatabase("colors.json", "colors");
+    const colors = await getDatabase("items.json", "colors");
     let items = [];
 
     if (req.method !== 'GET')
