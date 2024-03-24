@@ -61,6 +61,30 @@
             "rarity": "Rare",
             "price": 100,
             "path": "/assets/Stars/CristauxGalactique.jpg"
+        },
+        "8": {
+            "name": "Arc-en-ciel astral",
+            "rarity": "Rare",
+            "price": 100,
+            "path": "/assets/Stars/ArcencielAstral.jpg"
+        },
+        "9": {
+            "name": "Bulle planétaire",
+            "rarity": "Rare",
+            "price": 100,
+            "path": "assets/Stars/BullePlanetaire.jpg"
+        },
+        "10": {
+            "name": "Rayon stellaire",
+            "rarity": "Rare",
+            "price": 100,
+            "path": "/assets/Stars/RayonStellaire.jpg"
+        },
+        "11": {
+            "name": "Voie lactée en bocal",
+            "rarity": "Rare",
+            "price": 100,
+            "path": "/assets/Stars/VoieLacteeEnBocal.jpg"
         }
     }
 }
