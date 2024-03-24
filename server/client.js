@@ -1,8 +1,8 @@
 const axios = require('axios');
 
 const options = {
-    method: 'GET',
-    url: 'http://localhost:8082/trade',
+    method: 'POST',
+    url: 'http://localhost:8082/users/trade/0',
     params: { 'api-version': '3.0' },
     headers: {
         'content-type': 'application/json',

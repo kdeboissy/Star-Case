@@ -34,15 +34,26 @@ async function trade(req, res, cache)
     let myInventory = await getInventory(myUserID);
 
     for (const item of itemOffered) {
-        if (myInventory.inventory.includes(item))
-            myInventory.inventory.splice(myInventory.inventory.indexOf(item), 1);
-        else
+        let find = false;
+        myInventory.inventory.forEach((element) => {
+            if (element.id === item){
+                myInventory.inventory.splice(myInventory.inventory.indexOf(element), 1);
+                find = true;
+            }
+        });
+        if (!find)
             return res.status(400).send({ message: 'Not all items offered are in the inventory' });
     }
 
+    let username = null;
+    Object.keys(usersDB).forEach((user) => {
+        if (usersDB[user].userID === myUserID)
+            username = usersDB[user].username;
+    });
+
     cache.activeTrades[trade_username] = {
         userID: myUserID,
-        userName: usersDB[myUserID].username,
+        userName: username,
         itemWanted: itemWanted,
         itemOffered: itemOffered
     }

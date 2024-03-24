@@ -66,6 +66,7 @@ async function getInventory(userID)
     for (let i = 0; i < inventory.length; i++){
         let item = await getDatabase("items.json", "items");
         newInventory.push({
+            id: inventory[i],
             name: item[inventory[i]].name,
             rarity: item[inventory[i]].rarity,
             color: colors[item[inventory[i]].rarity],
