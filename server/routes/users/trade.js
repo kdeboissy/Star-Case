@@ -35,7 +35,7 @@ async function trade(req, res, cache)
 
     for (const item of itemOffered) {
         let find = false;
-        myInventory.inventory.forEach((element) => {
+        Object.keys(myInventory.inventory).forEach((element) => {
             if (element.id === item){
                 myInventory.inventory.splice(myInventory.inventory.indexOf(element), 1);
                 find = true;
