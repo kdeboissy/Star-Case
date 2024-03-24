@@ -152,6 +152,7 @@ function openCase()
         });
 
         sleep(2500).then(() => {
+            const caseOpenTop = document.getElementById('caseOpenTop');
             let rect;
             let shift = 0;
 
@@ -196,6 +197,13 @@ function openCase()
 
             theCase.classList.remove('the-case-animation-0');
 
+            caseOpenTop.style.width = `${theCase.getBoundingClientRect().width}px`;
+            caseOpenTop.style.height = `${theCase.getBoundingClientRect().height}px`;
+            caseOpenTop.style.left = `${theCase.getBoundingClientRect().x}px`;
+            caseOpenTop.style.top = `${theCase.getBoundingClientRect().y}px`;
+
+            caseOpenTop.style.display = "";
+
             var interval = setInterval(function () {
                 ++i;
                 if (i >= 803) {
@@ -214,6 +222,7 @@ function openCase()
                         roulette.style.display = "none";
                         itemGet.style.display = "flex";
                         sleep(2500).then(() => {
+                            caseOpenTop.style.display = "none";
                             itemGet.style.display = "none";
                             theCase.onclick = openCase;
                         });
@@ -243,7 +252,7 @@ function loadCases()
     box = 0;
 
     app.innerHTML = `
-<div id="itemGet" class="item-get flex-column position-absolute align-items-center justify-content-center" style="display: none">
+<div id="itemGet" class="item-get flex-column position-absolute align-items-center justify-content-center" style="display: none; z-index: 150;">
     <img src="/assets/rondoudou_francais.jpg" class="img-get" style="height: 50%;">
     <h1 class="mt-5 name-get">unknown</h1>
     <h4 class="mt-1 rarity-get">(Commun)</h2>
@@ -384,11 +393,22 @@ function loadCases()
 
     <div class="d-flex align-items-center justify-content-center" style="overflow-y: hidden; width: 100%; height: 100%;">
         <img src="/assets/box0.png" class="the-case" id="theCase" onclick="openCase();"/>
+        <img src="/assets/box_open.png" class="position-absolute" id="caseOpenTop" style="display: none;"/>
     </div>
 
     <canvas class="position-absolute" style="border-radius: 20px; left: calc(1% + 280px + 1.5em); top: 1%; z-index: -15;" height="600" width="600" id="canvas">
 </div>
 `;
+
+window.addEventListener("resize", () => {
+    const caseOpenTop = document.getElementById('caseOpenTop');
+    const theCase = document.getElementById('theCase');
+
+    caseOpenTop.style.width = `${theCase.getBoundingClientRect().width}px`;
+    caseOpenTop.style.height = `${theCase.getBoundingClientRect().height}px`;
+    caseOpenTop.style.left = `${theCase.getBoundingClientRect().x}px`;
+    caseOpenTop.style.top = `${theCase.getBoundingClientRect().y}px`;
+});
 
 const errorDom = document.getElementById('errorMessage');
 
