@@ -377,7 +377,9 @@ function loadCases()
         <div class="d-flex position-relative align-items-center justify-content-center m-2 box-btn" onclick="switchCase(2);">
             <img src="/assets/box2.png" style="width: 100%;"/>
         </div>
-        <div class="d-flex position-relative m-2 box-btn"></div>
+        <div class="d-flex position-relative align-items-center justify-content-center m-2 box-btn" onclick="switchCase(3);">
+            <img src="/assets/box3.png" style="width: 100%;"/>
+        </div>
     </div>
 
     <div class="d-flex align-items-center justify-content-center" style="overflow-y: hidden; width: 100%; height: 100%;">
