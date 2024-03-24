@@ -82,7 +82,7 @@
         },
         "11": {
             "name": "Voie lactée en bocal",
-            "rarity": "Rare",
+            "rarity": "Commun",
             "price": 100,
             "path": "/assets/Stars/VoieLacteeEnBocal.jpg"
         },
@@ -145,6 +145,78 @@
             "rarity": "Commun",
             "price": 10,
             "path": "/assets/english_rondoudou.jpg"
-        }
+        },
+        "22": {
+            "name": "PastaBox originelle",
+            "rarity": "Mythique",
+            "price": 10,
+            "path": "/assets/Pastas/PastaBoxOriginelle.jpg"
+        },
+        "23": {
+            "name": "PastaBox 01/11",
+            "rarity": "Legendaire",
+            "price": 10,
+            "path": "/assets/Pastas/PastaBox01.jpg"
+        },
+        "24": {
+            "name": "PastaBox 02/11",
+            "rarity": "Rare",
+            "price": 10,
+            "path": "/assets/Pastas/PastaBox02.jpg"
+        },
+        "25": {
+            "name": "PastaBox 03/11",
+            "rarity": "Rare",
+            "price": 10,
+            "path": "/assets/Pastas/PastaBox03.jpg"
+        },
+        "26": {
+            "name": "PastaBox 04/11",
+            "rarity": "Rare",
+            "price": 10,
+            "path": "/assets/Pastas/PastaBox04.jpg"
+        },
+        "27": {
+            "name": "PastaBox 05/11",
+            "rarity": "Rare",
+            "price": 10,
+            "path": "/assets/Pastas/PastaBox05.jpg"
+        },
+        "28": {
+            "name": "PastaBox 06/11",
+            "rarity": "Rare",
+            "price": 10,
+            "path": "/assets/Pastas/PastaBox06.jpg"
+        },
+        "29": {
+            "name": "PastaBox 07/11",
+            "rarity": "Rare",
+            "price": 10,
+            "path": "/assets/Pastas/PastaBox07.jpg"
+        },
+        "30": {
+            "name": "PastaBox 08/11",
+            "rarity": "Rare",
+            "price": 10,
+            "path": "/assets/Pastas/PastaBox08.jpg"
+        },
+        "31": {
+            "name": "PastaBox 09/11",
+            "rarity": "Rare",
+            "price": 10,
+            "path": "/assets/Pastas/PastaBox09.jpg"
+        },
+        "32": {
+            "name": "PastaBox 10/11",
+            "rarity": "Rare",
+            "price": 10,
+            "path": "/assets/Pastas/PastaBox10.jpg"
+        },
+        "33": {
+            "name": "PastaBox 11/11",
+            "rarity": "Rare",
+            "price": 10,
+            "path": "/assets/Pastas/PastaBox11.jpg"
+        },
     }
 }
