@@ -12,7 +12,7 @@ const { userRoute } = require('./routes/userRoute');
 const { tradeRoute } = require('./routes/user/tradeRoute');
 const { usersRoute } = require('./routes/usersRoute');
 const { itemsRoute, itemRoute } = require('./routes/itemRoute');
-const { openCase } = require('./routes/openCase');
+const { openCase, getProbability } = require('./routes/openCase');
 const { refuseTrade } = require('./routes/users/refuseTrade');
 require('dotenv').config();
 
@@ -26,6 +26,7 @@ async function registerRoutes(app, cache)
         '/user/trade': function(req, res) { tradeRoute(req, res, cache) },
 
         '/opencase': function(req, res) { openCase(req, res, cache) },
+        '/opencase/:boxID': function(req, res) { openCase(req, res, cache) },
 
         '/items': function(req, res) { itemsRoute(req, res, cache) },
         '/item/:id': function(req, res) { itemRoute(req, res, cache) },
@@ -67,6 +68,18 @@ function showCache(cache)
     }, 2500);
 }
 
+async function showProbabilities()
+{
+    for (let i = 0; i < 4; i++){
+        console.log("---------------\n-<-[ Crate de niveau " + i + " ]->-")
+        console.log("Poid commun : " + await getProbability("Commun", i));
+        console.log("Poid rare : " + await getProbability("Rare", i));
+        console.log("Poid epique : " + await getProbability("Epique", i));
+        console.log("Poid legendaire : " + await getProbability("Legendaire", i));
+        console.log("Poid mythique : " + await getProbability("Mythique", i));
+    }
+}
+
 async function main() {
     const cache = {}
     const app = express();
@@ -78,6 +91,7 @@ async function main() {
 
     await initCache(cache);
     // showCache(cache);
+    // await showProbabilities();
     await registerLogRequests(app);
     await registerRoutes(app, cache);
 

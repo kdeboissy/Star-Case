@@ -3,10 +3,23 @@ const { getDatabase } = require("../database/getDatabase");
 const { addItemInInventory } = require("../database/inventory");
 const { getRandomFromStars } = require("../random");
 
-async function getProbability(type)
+async function getProbability(type, crateID)
 {
     const probability = await getDatabase("items.json", "dropRate");
-    return probability[type] * 1000;
+    const typeList = [
+        "Commun",
+        "Rare",
+        "Epique",
+        "Legendaire",
+        "Mythique"
+    ]
+    let typeIndex = typeList.indexOf(type);
+    typeIndex = typeIndex + crateID;
+
+    if (typeIndex >= typeList.length)
+        typeIndex = typeList.length - 1;
+
+    return probability[typeList[typeIndex]] * 1000;
 }
 
 async function openCase(req, res, cache)
@@ -14,10 +27,15 @@ async function openCase(req, res, cache)
     const items = await getDatabase("items.json", "items");
     const random = await getRandomFromStars();
     let listItems = [];
+    let crateID;
     let keys = Object.keys(items);
 
     if (req.method !== 'GET')
         return res.status(401).send({ message: 'Please use GET method' });
+    if (!req.params || !req.params.userID)
+        crateID = 0;
+    else
+        crateID = req.params.boxID;
     const userID = await checkToken(req.headers);
     if (userID === -1)
         return res.status(401).send({ message: 'Unauthorized' });
@@ -25,7 +43,7 @@ async function openCase(req, res, cache)
     for (let index = 0; index < keys.length; ++index) {
         const item = keys[index];
 
-        let temp = await getProbability(items[item].rarity);
+        let temp = await getProbability(items[item].rarity, crateID);
 
         for (let index = 0; index < temp; ++index) {
             listItems.push(item);
@@ -39,5 +57,6 @@ async function openCase(req, res, cache)
 }
 
 module.exports = {
-    openCase
+    openCase,
+    getProbability
 };
