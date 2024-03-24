@@ -1,4 +1,17 @@
 const nameDom = document.getElementById('username')
+const images = {};
+
+function preload() {
+    for (var i = 0; i < arguments.length; i++) {
+        images[preload.arguments[i]] = new Image();
+        images[preload.arguments[i]].src = preload.arguments[i];
+    }
+}
+
+preload(
+    "/assets/box0.png",
+    "/assets/box1.png"
+)
 
 function logout()
 {

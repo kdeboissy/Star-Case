@@ -39,7 +39,12 @@ function openCase()
         json = JSON.parse(request.responseText)["item"];
 
         document.querySelectorAll('.item-btn').forEach((item) => {
-            item.innerHTML = `<img src=${items[getRandInt(0, 10000000) % items.length]["itemDatas"].path} style="width: 80%;">`;
+            var srcTemp = items[getRandInt(0, 10000000) % items.length]["itemDatas"].path;
+
+            if (!images[srcTemp])
+                preload(srcTemp);
+
+            item.innerHTML = `<img src=${srcTemp} style="width: 80%;">`;
         });
 
         sleep(2500).then(() => {
@@ -94,7 +99,7 @@ function openCase()
                     sleep(1500).then(() => {
                         roulette.style.display = "none";
                         itemGet.style.display = "flex";
-                        sleep(1500).then(() => {
+                        sleep(2500).then(() => {
                             itemGet.style.display = "none";
                             theCase.onclick = openCase;
                         });
