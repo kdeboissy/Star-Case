@@ -139,6 +139,12 @@
             "rarity": "Commun",
             "price": 10,
             "path": "/assets/sleeping_rondoudou.jpg"
+        },
+        "21": {
+            "name": "Rondoudou anglais",
+            "rarity": "Commun",
+            "price": 10,
+            "path": "/assets/english_rondoudou.jpg"
         }
     }
 }
