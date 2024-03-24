@@ -56,7 +56,7 @@ async function getInventory(userID)
     if (database === null || database === undefined || database[userID] === null || database[userID] === undefined)
         return {
             inventorySize: 0,
-            inventory: {}
+            inventory: []
         };
 
     let inventory = database[userID].inventory;
