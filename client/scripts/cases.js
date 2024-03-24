@@ -137,8 +137,8 @@ function openCase()
     });
 
     requestAPIProtected(
-        `/opencase`, "GET", localStorage.getItem("authToken"),
-        '',
+        `/opencase/${box}`, "GET", localStorage.getItem("authToken"),
+        ``,
         function (request) {
         json = JSON.parse(request.responseText)["item"];
 
