@@ -36,13 +36,31 @@
             "name": "Rondoudou shiny",
             "rarity": "Legendaire",
             "price": 10000,
-            "path": "/assets/rondoudou_shiny.png"
+            "path": "/assets/RondoudouShiny.jpg"
         },
         "4": {
             "name": "Pain au chocolat",
             "rarity": "Commun",
             "price": 10,
             "path": "/assets/pain_au_chocolat.png"
+        },
+        "5": {
+            "name": "Brume celeste",
+            "rarity": "Rare",
+            "price": 100,
+            "path": "/assets/Stars/BrumeCeleste.jpg"
+        },
+        "6": {
+            "name": "Meteorites celeste",
+            "rarity": "Rare",
+            "price": 100,
+            "path": "/assets/Stars/MeteoritesCeleste.jpg"
+        },
+        "7": {
+            "name": "Cristaux galactiques",
+            "rarity": "Rare",
+            "price": 100,
+            "path": "/assets/Stars/CristauxGalactique.jpg"
         }
     }
 }
