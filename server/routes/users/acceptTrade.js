@@ -1,4 +1,4 @@
-const { addItemInInventory, removeItemInInventory } = require("../../database/inventory");
+const { addItemInInventory, removeItemInInventory, getInventory } = require("../../database/inventory");
 
 async function acceptTrade(req, res, cache)
 {
@@ -19,6 +19,34 @@ async function acceptTrade(req, res, cache)
         return res.status(400).send({ message: 'No active trade with this user' });
     if (cache.activeTrades[userID].userID != tradeUsername)
         return res.status(400).send({ message: 'No active trade with this user' });
+
+    let myInventory = await getInventory(userID);
+    let otherInventory = await getInventory(tradeUsername);
+
+    for (let item of cache.activeTrades[userID].itemOffered)
+    {
+        let find = false;
+        myInventory.inventory.forEach((element) => {
+            if (element.id == item && find == false){
+                myInventory.inventory.splice(myInventory.inventory.indexOf(element), 1);
+                find = true;
+            }
+        });
+        if (!find)
+            return res.status(400).send({ message: 'Not all items offered are in the inventory' });
+    }
+    for (let item of cache.activeTrades[userID].itemWanted)
+    {
+        let find = false;
+        otherInventory.inventory.forEach((element) => {
+            if (element.id == item && find == false){
+                otherInventory.inventory.splice(otherInventory.inventory.indexOf(element), 1);
+                find = true;
+            }
+        });
+        if (!find)
+            return res.status(400).send({ message: 'Not all items wanted are in the inventory' });
+    }
 
     for (let item of cache.activeTrades[userID].itemOffered)
     {
