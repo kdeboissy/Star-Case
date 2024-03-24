@@ -14,7 +14,7 @@ async function getProbability(type, crateID)
         "Mythique"
     ]
     let typeIndex = typeList.indexOf(type);
-    typeIndex = typeIndex + crateID;
+    typeIndex = typeIndex + parseInt(crateID);
 
     if (typeIndex >= typeList.length)
         typeIndex = typeList.length - 1;
