@@ -15,9 +15,10 @@ async function tradeRoute(req, res, cache)
 
     let activeTrades = cache.activeTrades;
     let myTrades = {};
+
     Object.keys(activeTrades).forEach(async (trade) => {
-        if (trade === userID)
-            myTrades[activeTrades[trade.userID]] = activeTrades[trade];
+        if (trade == userID)
+            myTrades[activeTrades[trade].userID] = activeTrades[trade];
     });
 
     return res.status(200).send({
