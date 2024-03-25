@@ -26,6 +26,7 @@
     width: 75%;
     transition: 200ms;
     cursor: pointer;
+    clip-path: inset(20% 10% 10% 10% round 50px);
 }
 
 .the-case:hover {
