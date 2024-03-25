@@ -47,7 +47,6 @@ async function openCase(req, res, cache)
         const item = keys[index];
 
         let temp = await getProbability(items[item].rarity, crateID);
-        console.log(temp, items[item].rarity);
 
         for (let index = 0; index < temp; ++index) {
             listItems.push(item);
