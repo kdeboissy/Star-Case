@@ -14,6 +14,21 @@ function showBigObject(id)
     itemBig.style.display = "flex";
 }
 
+function getRarityCode(rarity)
+{
+    if (rarity == "Commun")
+        return (0);
+    if (rarity == "Rare")
+        return (1);
+    if (rarity == "Epique")
+        return (2);
+    if (rarity == "Legendaire")
+        return (3);
+    if (rarity == "Mythique")
+        return (4);
+    return (-1);
+}
+
 function loadInventory()
 {
     casesBtn.classList.remove("active");
@@ -43,8 +58,44 @@ function loadInventory()
         `/user/inventory`, "GET", localStorage.getItem("authToken"),
         '',
         function (request) {
+        var json = JSON.parse(request.responseText)["inventory"];
+
+        if (localStorage.getItem("inventorySortingMethod") == "name")
+            json = json.sort((a, b) => {
+                if (a.name > b.name) {
+                    return 1;
+                }
+                if (a.name < b.name) {
+                    return -1;
+                }
+                return (0);
+            });
+        if (localStorage.getItem("inventorySortingMethod") == "id")
+            json = json.sort((a, b) => {
+                if (a.id > b.id) {
+                    return 1;
+                }
+                if (a.id < b.id) {
+                    return -1;
+                }
+                return (0);
+            });
+        if (localStorage.getItem("inventorySortingMethod") == "rarity") {
+            json = json.sort((a, b) => {
+                if (getRarityCode(a.rarity) > getRarityCode(b.rarity)) {
+                    return 1;
+                }
+                if (getRarityCode(a.rarity) < getRarityCode(b.rarity)) {
+                    return -1;
+                }
+                return (0);
+            });
+        }
+
+        if (localStorage.getItem("reverseInventorySorting") == "true")
+            json = json.reverse();
         inventory.innerHTML = '';
-        JSON.parse(request.responseText)["inventory"].forEach((item) => {
+        json.forEach((item) => {
             if (!cacheInventoryTab[item.id])
                 cacheInventoryTab[item.id] = item;
             if (!images[item.path])

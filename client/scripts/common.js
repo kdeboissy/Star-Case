@@ -100,5 +100,9 @@ function requestAPIProtected(route, method, token, body, callback, errorDom, suc
 
 if (!localStorage.getItem("theme"))
     localStorage.setItem("theme", "light");
+if (!localStorage.getItem("inventorySortingMethod"))
+    localStorage.setItem("inventorySortingMethod", "date")
+if (!localStorage.getItem("reverseInventorySorting"))
+    localStorage.setItem("reverseInventorySorting", false)
 
 document.getElementsByTagName('html')[0].setAttribute("data-bs-theme", localStorage.getItem("theme"));
