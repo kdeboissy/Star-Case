@@ -251,8 +251,6 @@ function loadCases()
     inventoryBtn.classList.remove("active");
     tradeBtn.classList.remove("active");
 
-    box = 0;
-
     app.innerHTML = `
 <div id="itemGet" class="item-get flex-column position-absolute align-items-center justify-content-center" style="display: none; z-index: 150;">
     <img src="/assets/rondoudou_francais.jpg" class="img-get" style="height: 50%;">
@@ -394,7 +392,7 @@ function loadCases()
     </div>
 
     <div class="d-flex align-items-center justify-content-center" style="overflow-y: hidden; width: 100%; height: 100%;">
-        <img src="/assets/box0.png" class="the-case" id="theCase" onclick="openCase();"/>
+        <img src="/assets/box${box}.png" class="the-case" id="theCase" onclick="openCase();"/>
         <img src="/assets/box_open.png" class="position-absolute" id="caseOpenTop" style="display: none;"/>
     </div>
 
