@@ -241,6 +241,90 @@
             "rarity": "Mythique",
             "price": 100,
             "path": "/assets/LaChevelureDAymeric.png"
+        },
+        "38": {
+            "name": "Le Bash",
+            "rarity": "Commun",
+            "price": 10,
+            "path": "/assets/langages/bash.png"
+        },
+        "39": {
+            "name": "Le C",
+            "rarity": "Rare",
+            "price": 100,
+            "path": "/assets/langages/c.png"
+        },
+        "40": {
+            "name": "Le C++",
+            "rarity": "Rare",
+            "price": 100,
+            "path": "/assets/langages/cpp.png"
+        },
+        "41": {
+            "name": "L'Assembler",
+            "rarity": "Legendaire",
+            "price": 10000,
+            "path": "/assets/langages/asm.png"
+        },
+        "42": {
+            "name": "Le Haskell",
+            "rarity": "Epique",
+            "price": 1000,
+            "path": "/assets/langages/haskell.png"
+        },
+        "43": {
+            "name": "Python",
+            "rarity": "Commun",
+            "price": 10,
+            "path": "/assets/langages/python.png"
+        },
+        "44": {
+            "name": "Segmentation fault",
+            "rarity": "Commun",
+            "price": 10,
+            "path": "/assets/states/segmentationfault.png"
+        },
+        "45": {
+            "name": "Docker",
+            "rarity": "Rare",
+            "price": 100,
+            "path": "/assets/programs/docker.png"
+        },
+        "46": {
+            "name": "TCSH",
+            "rarity": "Mythique",
+            "price": 100000,
+            "path": "/assets/programs/tcsh.png"
+        },
+        "47": {
+            "name": "Valgrind",
+            "rarity": "Legendaire",
+            "price": 10000,
+            "path": "/assets/programs/valgrind.png"
+        },
+        "48": {
+            "name": "Fedora",
+            "rarity": "Epique",
+            "price": 1000,
+            "path": "/assets/programs/fedora.png"
+        },
+        "49" : {
+            "name": "Comté",
+            "rarity": "Rare",
+            "price": 100,
+            "path": "/assets/salles/comte.png"
+        },
+        "50" : {
+            "name": "Foyer",
+            "rarity": "Epique",
+            "price": 1000,
+            "path": "/assets/salles/foyer.png"
+        },
+        "51" : {
+            "name": "Hub innovation",
+            "rarity": "Commun",
+            "price": 1000,
+            "path": "/assets/salles/hub_innovation.png"
         }
     }
 }

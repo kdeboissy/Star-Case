@@ -14,12 +14,15 @@ async function getProbability(type, crateID)
         "Mythique"
     ]
     let typeIndex = typeList.indexOf(type);
-    typeIndex = typeIndex + parseInt(crateID);
+    // typeIndex = typeIndex + parseInt(crateID);
 
-    if (typeIndex >= typeList.length)
-        typeIndex = typeList.length - 1;
+    // if (typeIndex >= typeList.length)
+        // typeIndex = typeList.length - 1;
 
-    return probability[typeList[typeIndex]] * 1000;
+    if (typeIndex < parseInt(crateID))
+        return (Math.ceil((probability[typeList[typeIndex]] * 1000) / Math.pow(10, parseInt(crateID) - typeIndex)));
+    else
+        return probability[typeList[typeIndex]] * 1000;
 }
 
 async function openCase(req, res, cache)
@@ -44,6 +47,7 @@ async function openCase(req, res, cache)
         const item = keys[index];
 
         let temp = await getProbability(items[item].rarity, crateID);
+        console.log(temp, items[item].rarity);
 
         for (let index = 0; index < temp; ++index) {
             listItems.push(item);
