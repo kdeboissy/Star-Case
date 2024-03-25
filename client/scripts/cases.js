@@ -260,7 +260,7 @@ function loadCases()
     <h4 class="mt-1 rarity-get">(Commun)</h2>
 </div>
 <div class="roulette position-absolute align-items-center justify-content-center" style="display: none;" id="roulette">
-    <div class="position-absolute" style="align-self: end; margin-bottom: 20px; width: 10px; height: 10px; color: red;"><i class="fas fa-chevron-up" style="color: #fff;"></i></div>
+    <div class="position-absolute" style="align-self: end; margin-bottom: 20px; width: 10px; height: 10px; color: red; z-index: 200;"><i class="fas fa-chevron-up" style="color: #fff;"></i></div>
     <div class="roulette-container position-relative d-flex align-items-center justify-content-end">
         <div class="position-relative m-2 item-btn align-items-center justify-content-center d-flex"></div>
         <div class="position-relative m-2 item-btn align-items-center justify-content-center d-flex"></div>
